@@ -1,0 +1,451 @@
+[
+    {
+        "name": "addCustomObject",
+        "category": "Custom Objects - Object Management",
+        "signature": "addCustomObject(QString designation, Vec3d coordinates, bool isVisible)",
+        "description": "Adds a custom object or marker at the specified J2000 equatorial coordinates. Custom objects can be used to mark interesting locations, stars, or any point of interest on the celestial sphere.",
+        "parameters": [
+            {
+                "name": "designation",
+                "type": "QString",
+                "description": "Name or identifier for the custom object (e.g., 'My Star', 'Marker 1')",
+                "required": true
+            },
+            {
+                "name": "coordinates",
+                "type": "Vec3d",
+                "description": "J2000 equatorial coordinates as a normalized 3D vector",
+                "required": true
+            },
+            {
+                "name": "isVisible",
+                "type": "bool",
+                "description": "true to show as a marker (cross symbol), false to hide",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a marker at a specific J2000 position\nvar position = core.vec3d(0.5, 0.5, 0.707);\nCustomObjectMgr.addCustomObject(\"My Marker\", position, true);\n\n// Add an invisible custom object (for data storage)\nvar hiddenPos = core.vec3d(0.2, 0.3, 0.933);\nCustomObjectMgr.addCustomObject(\"Hidden Object\", hiddenPos, false);"
+    },
+    {
+        "name": "addCustomObject",
+        "category": "Custom Objects - Object Management",
+        "signature": "addCustomObject(QString designation, QString ra, QString dec, bool isVisible)",
+        "description": "Adds a custom object or marker at the specified J2000 equatorial coordinates using right ascension and declination strings. This is the most convenient way to add custom objects from script.",
+        "parameters": [
+            {
+                "name": "designation",
+                "type": "QString",
+                "description": "Name or identifier for the custom object (e.g., 'My Star', 'Marker 1')",
+                "required": true
+            },
+            {
+                "name": "ra",
+                "type": "QString",
+                "description": "Right Ascension in J2000 frame (e.g., '5h 35m 17.3s' or '83.822°')",
+                "required": true
+            },
+            {
+                "name": "dec",
+                "type": "QString",
+                "description": "Declination in J2000 frame (e.g., '-5° 23′ 28″' or '-5.391°')",
+                "required": true
+            },
+            {
+                "name": "isVisible",
+                "type": "bool",
+                "description": "true to show as a marker (cross symbol), false to hide",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a marker at Orion Nebula position\nCustomObjectMgr.addCustomObject(\"Orion Nebula\", \"5h 35m 17.3s\", \"-5° 23′ 28″\", true);\n\n// Add a marker at Sirius position\nCustomObjectMgr.addCustomObject(\"Sirius\", \"6h 45m 8.9s\", \"-16° 42′ 58″\", true);\n\n// Add a marker using decimal degrees\nCustomObjectMgr.addCustomObject(\"Galactic Center\", \"17h 45m 40s\", \"-29° 00′ 28″\", true);\n\ncore.debug(\"Custom markers added successfully\");"
+    },
+    {
+        "name": "addCustomObjectRaDec",
+        "category": "Custom Objects - Object Management",
+        "signature": "addCustomObjectRaDec(QString designation, QString ra, QString dec, bool isVisible)",
+        "description": "Adds a custom object or marker at the specified equatorial coordinates using the current date's Right Ascension/Declination (not J2000). The coordinates are automatically converted to J2000.",
+        "parameters": [
+            {
+                "name": "designation",
+                "type": "QString",
+                "description": "Name or identifier for the custom object",
+                "required": true
+            },
+            {
+                "name": "ra",
+                "type": "QString",
+                "description": "Right Ascension for the current date (e.g., '5h 35m 17.3s')",
+                "required": true
+            },
+            {
+                "name": "dec",
+                "type": "QString",
+                "description": "Declination for the current date (e.g., '-5° 23′ 28″')",
+                "required": true
+            },
+            {
+                "name": "isVisible",
+                "type": "bool",
+                "description": "true to show as a marker, false to hide",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a marker using current date coordinates\nCustomObjectMgr.addCustomObjectRaDec(\"Current Position\", \"2h 10m 15s\", \"60d 01m 15s\", true);\n\n// Add a marker at the Sun's current position\nvar sunInfo = core.getObjectInfo(\"Sun\");\nCustomObjectMgr.addCustomObjectRaDec(\"Sun Now\", sunInfo[\"ra\"], sunInfo[\"dec\"], true);"
+    },
+    {
+        "name": "addCustomObjectAltAzi",
+        "category": "Custom Objects - Object Management",
+        "signature": "addCustomObjectAltAzi(QString designation, QString alt, QString azi, bool isVisible)",
+        "description": "Adds a custom object or marker at the specified Altitude/Azimuth coordinates. The coordinates are automatically converted to J2000 equatorial coordinates.",
+        "parameters": [
+            {
+                "name": "designation",
+                "type": "QString",
+                "description": "Name or identifier for the custom object",
+                "required": true
+            },
+            {
+                "name": "alt",
+                "type": "QString",
+                "description": "Altitude angle (e.g., '45°', '30d', '0.5rad')",
+                "required": true
+            },
+            {
+                "name": "azi",
+                "type": "QString",
+                "description": "Azimuth angle (e.g., '90°' for East, '180°' for South)",
+                "required": true
+            },
+            {
+                "name": "isVisible",
+                "type": "bool",
+                "description": "true to show as a marker, false to hide",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a marker at zenith (directly overhead)\nCustomObjectMgr.addCustomObjectAltAzi(\"Zenith\", \"90°\", \"0°\", true);\n\n// Add a marker on the eastern horizon\nCustomObjectMgr.addCustomObjectAltAzi(\"East Point\", \"0°\", \"90°\", true);\n\n// Add a marker at a specific point in the sky\nCustomObjectMgr.addCustomObjectAltAzi(\"My Point\", \"45d\", \"135d\", true);"
+    },
+    {
+        "name": "removeCustomObjects",
+        "category": "Custom Objects - Object Management",
+        "signature": "removeCustomObjects()",
+        "description": "Removes all temporary custom objects (markers) from the sky. Persistent objects remain unaffected.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Clear all temporary markers\nCustomObjectMgr.removeCustomObjects();\ncore.debug(\"All custom markers removed\");\n\n// Add some markers then clear them\nCustomObjectMgr.addCustomObject(\"Marker 1\", \"2h\", \"30d\", true);\nCustomObjectMgr.addCustomObject(\"Marker 2\", \"4h\", \"45d\", true);\ncore.wait(3);\nCustomObjectMgr.removeCustomObjects();"
+    },
+    {
+        "name": "removeCustomObject",
+        "category": "Custom Objects - Object Management",
+        "signature": "removeCustomObject(QString englishName)",
+        "description": "Removes a specific custom object by its English name.",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "The English name of the custom object to remove",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Remove a specific marker by name\nCustomObjectMgr.removeCustomObject(\"My Marker\");\n\n// Check if exists before removing\nvar obj = CustomObjectMgr.searchByEnglishName(\"Orion Nebula\");\nif(obj) {\n    CustomObjectMgr.removeCustomObject(\"Orion Nebula\");\n    core.debug(\"Removed Orion Nebula marker\");\n}"
+    },
+    {
+        "name": "addPersistentObject",
+        "category": "Custom Objects - Persistent Objects",
+        "signature": "addPersistentObject(QString designation, Vec3d coordinates, QString objectType)",
+        "description": "Adds a persistent custom object that is saved to disk and will reappear when Stellarium is restarted. These objects are stored in persistentCustomObjects.json.",
+        "parameters": [
+            {
+                "name": "designation",
+                "type": "QString",
+                "description": "Name or identifier for the persistent object",
+                "required": true
+            },
+            {
+                "name": "coordinates",
+                "type": "Vec3d",
+                "description": "J2000 equatorial coordinates as a normalized 3D vector",
+                "required": true
+            },
+            {
+                "name": "objectType",
+                "type": "QString",
+                "description": "Type description for the object (e.g., 'star', 'nebula', 'custom object')",
+                "required": false,
+                "default": "\"custom object\""
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a persistent star marker\nvar position = core.vec3d(0.5, 0.5, 0.707);\nCustomObjectMgr.addPersistentObject(\"My Favorite Star\", position, \"star\");\n\n// Add a persistent custom object visible in search\nvar nebulaPos = core.vec3d(0.2, 0.8, 0.566);\nCustomObjectMgr.addPersistentObject(\"Discovered Nebula\", nebulaPos, \"nebula\");"
+    },
+    {
+        "name": "removePersistentObjects",
+        "category": "Custom Objects - Persistent Objects",
+        "signature": "removePersistentObjects()",
+        "description": "Removes all persistent custom objects from the sky and deletes them from the persistent storage file.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Remove all saved persistent objects\nCustomObjectMgr.removePersistentObjects();\ncore.debug(\"All persistent objects removed from storage\");"
+    },
+    {
+        "name": "setMarkersColor",
+        "category": "Custom Objects - Appearance",
+        "signature": "setMarkersColor(Vec3f color)",
+        "description": "Sets the color of custom object markers (the cross symbols displayed on screen).",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set markers to bright red\nvar red = core.vec3f(1.0, 0.0, 0.0);\nCustomObjectMgr.setMarkersColor(red);\n\n// Set markers to cyan\nvar cyan = core.vec3f(0.0, 0.8, 0.9);\nCustomObjectMgr.setMarkersColor(cyan);\n\n// Set markers to yellow\nvar yellow = core.vec3f(1.0, 1.0, 0.0);\nCustomObjectMgr.setMarkersColor(yellow);\n\n// Get current color\nvar color = CustomObjectMgr.getMarkersColor();\ncore.debug(\"Marker color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "getMarkersColor",
+        "category": "Custom Objects - Appearance",
+        "signature": "Vec3f getMarkersColor()",
+        "description": "Returns the current color of custom object markers.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = CustomObjectMgr.getMarkersColor();\ncore.debug(\"Current marker color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "setMarkersSize",
+        "category": "Custom Objects - Appearance",
+        "signature": "setMarkersSize(float size)",
+        "description": "Sets the size of custom object markers (the cross symbols) in pixels.",
+        "parameters": [
+            {
+                "name": "size",
+                "type": "float",
+                "description": "Marker size in pixels (default: 5.0, range: 1-20)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Small markers\nCustomObjectMgr.setMarkersSize(3.0);\n\n// Large, visible markers\nCustomObjectMgr.setMarkersSize(8.0);\n\n// Default size\nCustomObjectMgr.setMarkersSize(5.0);\n\nvar size = CustomObjectMgr.getMarkersSize();\ncore.debug(\"Marker size: \" + size + \" pixels\");"
+    },
+    {
+        "name": "getMarkersSize",
+        "category": "Custom Objects - Appearance",
+        "signature": "float getMarkersSize()",
+        "description": "Returns the current size of custom object markers in pixels.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Marker size in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var size = CustomObjectMgr.getMarkersSize();\ncore.debug(\"Current marker size: \" + size + \" px\");"
+    },
+    {
+        "name": "setSelectPriority",
+        "category": "Custom Objects - Advanced Settings",
+        "signature": "setSelectPriority(float priority)",
+        "description": "Sets the selection priority for custom objects. Higher priority values make custom objects easier to select when multiple objects are near each other.",
+        "parameters": [
+            {
+                "name": "priority",
+                "type": "float",
+                "description": "Selection priority (default: -2.0, higher = more selectable)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Increase selection priority to make markers easily selectable\nCustomObjectMgr.setSelectPriority(5.0);\n\n// Lower priority (harder to select)\nCustomObjectMgr.setSelectPriority(-10.0);\n\n// Default priority\nCustomObjectMgr.setSelectPriority(-2.0);\n\nvar priority = CustomObjectMgr.getSelectPriority();\ncore.debug(\"Select priority: \" + priority);"
+    },
+    {
+        "name": "getSelectPriority",
+        "category": "Custom Objects - Advanced Settings",
+        "signature": "float getSelectPriority()",
+        "description": "Returns the current selection priority for custom objects.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Selection priority value",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var priority = CustomObjectMgr.getSelectPriority();\ncore.debug(\"Current select priority: \" + priority);"
+    },
+    {
+        "name": "searchByEnglishName",
+        "category": "Custom Objects - Information & Utilities",
+        "signature": "CustomObjectP searchByEnglishName(QString customObjectEnglishName)",
+        "description": "Searches for a custom object by its English name and returns a pointer to it.",
+        "parameters": [
+            {
+                "name": "customObjectEnglishName",
+                "type": "QString",
+                "description": "The English name of the custom object to search for",
+                "required": true
+            }
+        ],
+        "returnType": "CustomObjectP",
+        "returnDescription": "Shared pointer to the custom object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Search for a custom object\nvar obj = CustomObjectMgr.searchByEnglishName(\"My Marker\");\nif(obj) {\n    core.debug(\"Found custom object: \" + obj.getEnglishName());\n    // Select it\n    CustomObjectMgr.setSelected(obj);\n} else {\n    core.debug(\"Custom object not found\");\n}"
+    },
+    {
+        "name": "getSelected",
+        "category": "Custom Objects - Selection",
+        "signature": "CustomObjectP getSelected()",
+        "description": "Returns a pointer to the currently selected custom object.",
+        "parameters": [],
+        "returnType": "CustomObjectP",
+        "returnDescription": "Shared pointer to the selected custom object, or null if none selected",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Get and examine the selected custom object\nvar selected = CustomObjectMgr.getSelected();\nif(selected) {\n    core.debug(\"Selected: \" + selected.getEnglishName());\n} else {\n    core.debug(\"No custom object selected\");\n}"
+    },
+    {
+        "name": "setSelected",
+        "category": "Custom Objects - Selection",
+        "signature": "setSelected(CustomObjectP obj)",
+        "description": "Selects a custom object by its pointer or name.",
+        "parameters": [
+            {
+                "name": "obj",
+                "type": "CustomObjectP",
+                "description": "Shared pointer to the custom object to select, or a QString name",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Select a custom object by name\nCustomObjectMgr.setSelected(\"My Marker\");\n\n// Or select by pointer\nvar obj = CustomObjectMgr.searchByEnglishName(\"Orion Nebula\");\nif(obj) {\n    CustomObjectMgr.setSelected(obj);\n    core.moveToSelectedObject(2);\n}\n\n// Deselect all\nCustomObjectMgr.setSelected(\"\");"
+    }
+]

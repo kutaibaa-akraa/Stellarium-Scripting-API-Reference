@@ -1,0 +1,266 @@
+[
+    {
+        "name": "getCommonEnglishName",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCommonEnglishName(StarId hip)",
+        "description": "Returns the English common name for a star by its Hipparcos or Gaia catalog number (e.g., 'Sirius', 'Betelgeuse').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "English common name, or empty string if none",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchHP(32349);\nif(sirius) {\n    var name = StarMgr.getCommonEnglishName(32349);\n    core.debug(\"Sirius common name: \" + name);\n}"
+    },
+    {
+        "name": "getCommonNameI18n",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCommonNameI18n(StarId hip)",
+        "description": "Returns the translated common name for a star by its Hipparcos or Gaia catalog number.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Translated common name",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var translatedName = StarMgr.getCommonNameI18n(32349);\ncore.debug(\"Sirius in current language: \" + translatedName);"
+    },
+    {
+        "name": "getCulturalNames",
+        "category": "Stars Manager - Names",
+        "signature": "QList<StelObject::CulturalName> getCulturalNames(StarId hip)",
+        "description": "Returns the cultural names for a star (native names from different sky cultures).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QList<StelObject::CulturalName>",
+        "returnDescription": "List of cultural name objects",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var culturalNames = StarMgr.getCulturalNames(32349);\nfor(var i=0; i<culturalNames.length; i++) {\n    core.debug(\"Native: \" + culturalNames[i].native);\n    core.debug(\"Pronounce: \" + culturalNames[i].pronounce);\n}"
+    },
+    {
+        "name": "getCulturalScreenLabel",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCulturalScreenLabel(StarId hip)",
+        "description": "Returns the screen label for a star based on the current sky culture settings (short format).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Screen label for the star",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var screenLabel = StarMgr.getCulturalScreenLabel(32349);\ncore.debug(\"Star label: \" + screenLabel);"
+    },
+    {
+        "name": "getCulturalInfoLabel",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCulturalInfoLabel(StarId hip)",
+        "description": "Returns the information label for a star based on the current sky culture settings (long format for info panel).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Information label for the star",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var infoLabel = StarMgr.getCulturalInfoLabel(32349);\ncore.debug(\"Star info: \" + infoLabel);"
+    },
+    {
+        "name": "getSciDesignation",
+        "category": "Stars Manager - Names",
+        "signature": "QString getSciDesignation(StarId hip)",
+        "description": "Returns the scientific designation (Bayer/Flamsteed name) for a star (e.g., 'α CMa', '21 Tau').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Scientific designation",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sciName = StarMgr.getSciDesignation(32349);\ncore.debug(\"Sirius scientific name: \" + sciName); // 'α CMa'"
+    },
+    {
+        "name": "getSciExtraDesignation",
+        "category": "Stars Manager - Names",
+        "signature": "QString getSciExtraDesignation(StarId hip)",
+        "description": "Returns additional scientific designations for a star (e.g., double star or variable star designations).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Additional scientific designations",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var extraName = StarMgr.getSciExtraDesignation(32349);\ncore.debug(\"Extra designations: \" + extraName);"
+    },
+    {
+        "name": "getCrossIdentificationDesignations",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCrossIdentificationDesignations(QString hip)",
+        "description": "Returns cross-identification designations (SAO, HD, HR numbers) for a star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "QString",
+                "description": "Hipparcos number (may include component letter)",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Cross-identification designations",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var crossIds = StarMgr.getCrossIdentificationDesignations(\"32349\");\ncore.debug(\"Cross IDs: \" + crossIds); // 'HR 2491 - HD 48915'"
+    },
+    {
+        "name": "convertToSpectralType",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToSpectralType(int index)",
+        "description": "Converts a spectral type index to a human-readable spectral type string (e.g., 'G2V', 'M5III').",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Spectral type index from star catalog",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Spectral type string",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var star = StarMgr.searchHP(32349);\nvar specIndex = star.getSpInt();\nvar specType = StarMgr.convertToSpectralType(specIndex);\ncore.debug(\"Spectral type: \" + specType);"
+    },
+    {
+        "name": "convertToComponentIds",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToComponentIds(int index)",
+        "description": "Converts a component index to a letter suffix (A, B, C, etc.) for double star components.",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Component index (0 = no suffix, 1 = 'A', 2 = 'B', etc.)",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Component letter or empty string",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var component = StarMgr.convertToComponentIds(1);\ncore.debug(\"Component: \" + component); // 'A'"
+    },
+    {
+        "name": "convertToOjectTypes",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToOjectTypes(int index)",
+        "description": "Converts an object type index to a human-readable object type description.",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Object type index from star catalog",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Object type description",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var objType = StarMgr.convertToOjectTypes(someIndex);\ncore.debug(\"Object type: \" + objType);"
+    }
+]

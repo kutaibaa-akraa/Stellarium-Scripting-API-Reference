@@ -1,0 +1,1637 @@
+[
+    {
+        "name": "setFlagArt",
+        "category": "Constellations - Display Control",
+        "signature": "setFlagArt(bool displayed)",
+        "description": "Shows or hides constellation artwork (mythological figures and cultural art). When enabled, artistic representations of constellations are displayed over the star patterns.",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show constellation art, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show constellation artwork\nConstellationMgr.setFlagArt(true);\n\n// Hide constellation artwork\nConstellationMgr.setFlagArt(false);\n\n// Toggle artwork visibility\nvar currentState = ConstellationMgr.getFlagArt();\nConstellationMgr.setFlagArt(!currentState);"
+    },
+    {
+        "name": "getFlagArt",
+        "category": "Constellations - Display Control",
+        "signature": "bool getFlagArt()",
+        "description": "Returns whether constellation artwork is currently visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if constellation art is visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagArt()) {\n    core.debug(\"Constellation artwork is visible\");\n} else {\n    core.debug(\"Constellation artwork is hidden\");\n}"
+    },
+    {
+        "name": "setArtFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "setArtFadeDuration(float duration)",
+        "description": "Sets the fade duration for constellation artwork when appearing or disappearing. Controls how smoothly the art transitions between visible and hidden states.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds (0 = instant, 2 = slow fade)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Fast fade (0.5 seconds)\nConstellationMgr.setArtFadeDuration(0.5);\nConstellationMgr.setFlagArt(true);\n\n// Slow dramatic fade (3 seconds)\nConstellationMgr.setArtFadeDuration(3.0);\nConstellationMgr.setFlagArt(false);\n\n// Get current fade duration\nvar fadeTime = ConstellationMgr.getArtFadeDuration();\ncore.debug(\"Art fade duration: \" + fadeTime + \" seconds\");"
+    },
+    {
+        "name": "getArtFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "float getArtFadeDuration()",
+        "description": "Returns the current fade duration for constellation artwork in seconds.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fadeDuration = ConstellationMgr.getArtFadeDuration();\ncore.debug(\"Artwork fade duration: \" + fadeDuration + \" seconds\");"
+    },
+    {
+        "name": "setArtIntensity",
+        "category": "Constellations - Display Control",
+        "signature": "setArtIntensity(float intensity)",
+        "description": "Sets the maximum intensity (brightness/opacity) of constellation artwork. Values range from 0 (fully transparent) to 1 (fully opaque). The intensity also fades based on field of view settings.",
+        "parameters": [
+            {
+                "name": "intensity",
+                "type": "float",
+                "description": "Art intensity value between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set artwork to full brightness\nConstellationMgr.setArtIntensity(1.0);\n\n// Set artwork to half transparency\nConstellationMgr.setArtIntensity(0.5);\n\n// Get current intensity\nvar intensity = ConstellationMgr.getArtIntensity();\ncore.debug(\"Art intensity: \" + intensity);\n\n// Configure FOV-based fading\nConstellationMgr.setArtIntensityMinimumFov(1.0);\nConstellationMgr.setArtIntensityMaximumFov(2.0);"
+    },
+    {
+        "name": "getArtIntensity",
+        "category": "Constellations - Display Control",
+        "signature": "float getArtIntensity()",
+        "description": "Returns the current maximum intensity (brightness/opacity) of constellation artwork.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Art intensity value between 0.0 and 1.0",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var intensity = ConstellationMgr.getArtIntensity();\ncore.debug(\"Current art intensity: \" + intensity);"
+    },
+    {
+        "name": "setArtIntensityMinimumFov",
+        "category": "Constellations - Advanced Settings",
+        "signature": "setArtIntensityMinimumFov(double fov)",
+        "description": "Sets the lower bound on the field of view (FOV) at which the art intensity fades to zero. Below this FOV, artwork becomes fully transparent.",
+        "parameters": [
+            {
+                "name": "fov",
+                "type": "double",
+                "description": "Minimum FOV in degrees (default: 1.0)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Artwork fades completely below 0.5 degrees\nConstellationMgr.setArtIntensityMinimumFov(0.5);\n\n// Artwork reaches full brightness at 2 degrees\nConstellationMgr.setArtIntensityMaximumFov(2.0);\n\nvar minFov = ConstellationMgr.getArtIntensityMinimumFov();\ncore.debug(\"Art minimum FOV: \" + minFov);"
+    },
+    {
+        "name": "getArtIntensityMinimumFov",
+        "category": "Constellations - Advanced Settings",
+        "signature": "double getArtIntensityMinimumFov()",
+        "description": "Returns the lower bound FOV at which artwork intensity fades to zero.",
+        "parameters": [],
+        "returnType": "double",
+        "returnDescription": "Minimum FOV in degrees",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var minFov = ConstellationMgr.getArtIntensityMinimumFov();\ncore.debug(\"Art min FOV: \" + minFov);"
+    },
+    {
+        "name": "setArtIntensityMaximumFov",
+        "category": "Constellations - Advanced Settings",
+        "signature": "setArtIntensityMaximumFov(double fov)",
+        "description": "Sets the upper bound on the field of view (FOV) at which the art intensity reaches its maximum value (set by setArtIntensity).",
+        "parameters": [
+            {
+                "name": "fov",
+                "type": "double",
+                "description": "Maximum FOV in degrees (default: 2.0)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setArtIntensityMaximumFov(3.0);\nvar maxFov = ConstellationMgr.getArtIntensityMaximumFov();\ncore.debug(\"Art max FOV: \" + maxFov);"
+    },
+    {
+        "name": "getArtIntensityMaximumFov",
+        "category": "Constellations - Advanced Settings",
+        "signature": "double getArtIntensityMaximumFov()",
+        "description": "Returns the upper bound FOV at which artwork intensity reaches maximum.",
+        "parameters": [],
+        "returnType": "double",
+        "returnDescription": "Maximum FOV in degrees",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var maxFov = ConstellationMgr.getArtIntensityMaximumFov();\ncore.debug(\"Art max FOV: \" + maxFov);"
+    },
+    {
+        "name": "setBoundariesColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setBoundariesColor(Vec3f color)",
+        "description": "Sets the color of constellation boundaries (the official IAU constellation borders).",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set boundaries to red\nvar red = core.vec3f(1.0, 0.0, 0.0);\nConstellationMgr.setBoundariesColor(red);\n\n// Set boundaries to light blue\nvar lightBlue = core.vec3f(0.5, 0.8, 1.0);\nConstellationMgr.setBoundariesColor(lightBlue);\n\n// Get current boundaries color\nvar color = ConstellationMgr.getBoundariesColor();\ncore.debug(\"Boundaries color: R=\" + color[0] + \", G=\" + color[1] + \", B=\" + color[2]);"
+    },
+    {
+        "name": "getBoundariesColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "Vec3f getBoundariesColor()",
+        "description": "Returns the current color of constellation boundaries.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getBoundariesColor();\ncore.debug(\"Boundaries color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "setFlagBoundaries",
+        "category": "Constellations - Display Control",
+        "signature": "setFlagBoundaries(bool displayed)",
+        "description": "Shows or hides constellation boundaries (the official IAU constellation borders).",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show boundaries, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show constellation boundaries\nConstellationMgr.setFlagBoundaries(true);\n\n// Hide constellation boundaries\nConstellationMgr.setFlagBoundaries(false);\n\n// Combined with other constellation elements\nConstellationMgr.setFlagLines(true);\nConstellationMgr.setFlagBoundaries(true);"
+    },
+    {
+        "name": "getFlagBoundaries",
+        "category": "Constellations - Display Control",
+        "signature": "bool getFlagBoundaries()",
+        "description": "Returns whether constellation boundaries are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if boundaries are visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagBoundaries()) {\n    core.debug(\"Constellation boundaries are visible\");\n}"
+    },
+    {
+        "name": "setBoundariesFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "setBoundariesFadeDuration(float duration)",
+        "description": "Sets the fade duration for constellation boundaries when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setBoundariesFadeDuration(1.5);\nConstellationMgr.setFlagBoundaries(true);\n\nvar fadeDuration = ConstellationMgr.getBoundariesFadeDuration();\ncore.debug(\"Boundaries fade duration: \" + fadeDuration);"
+    },
+    {
+        "name": "getBoundariesFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "float getBoundariesFadeDuration()",
+        "description": "Returns the current fade duration for constellation boundaries.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getBoundariesFadeDuration();\ncore.debug(\"Boundaries fade: \" + fade + \" seconds\");"
+    },
+    {
+        "name": "setFlagIsolateSelected",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "setFlagIsolateSelected(bool isolate)",
+        "description": "Enables or disables isolation mode for selected constellations. When enabled, only selected constellations are shown; all others are hidden.",
+        "parameters": [
+            {
+                "name": "isolate",
+                "type": "bool",
+                "description": "true to enable isolation mode, false to disable",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Enable isolation mode\nConstellationMgr.setFlagIsolateSelected(true);\nConstellationMgr.selectConstellation(\"Orion\");\n// Only Orion is now visible\n\n// Disable isolation mode\nConstellationMgr.setFlagIsolateSelected(false);\n// All constellations become visible\n\nvar isIsolated = ConstellationMgr.getFlagIsolateSelected();\ncore.debug(\"Isolation mode active: \" + isIsolated);"
+    },
+    {
+        "name": "getFlagIsolateSelected",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "bool getFlagIsolateSelected()",
+        "description": "Returns whether isolation mode for selected constellations is active.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if isolation mode is active",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagIsolateSelected()) {\n    core.debug(\"Isolation mode is active\");\n}"
+    },
+    {
+        "name": "setFlagConstellationPick",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "setFlagConstellationPick(bool mode)",
+        "description": "Sets whether only one selected constellation should be displayed at a time when isolation mode is active. When enabled, selecting a new constellation replaces the previous selection.",
+        "parameters": [
+            {
+                "name": "mode",
+                "type": "bool",
+                "description": "true for single selection mode, false for multiple selection",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Enable single constellation pick mode\nConstellationMgr.setFlagConstellationPick(true);\nConstellationMgr.setFlagIsolateSelected(true);\n\n// Select Orion - only Orion visible\nConstellationMgr.selectConstellation(\"Orion\");\n\n// Select Taurus - replaces Orion, only Taurus visible\nConstellationMgr.selectConstellation(\"Taurus\");\n\nvar pickMode = ConstellationMgr.getFlagConstellationPick();\ncore.debug(\"Single pick mode: \" + pickMode);"
+    },
+    {
+        "name": "getFlagConstellationPick",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "bool getFlagConstellationPick()",
+        "description": "Returns whether single constellation pick mode is enabled.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if single pick mode is enabled",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagConstellationPick()) {\n    core.debug(\"Single constellation pick mode is on\");\n}"
+    },
+    {
+        "name": "setLinesColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setLinesColor(Vec3f color)",
+        "description": "Sets the color of constellation lines that connect stars to form the constellation patterns.",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set constellation lines to cyan\nvar cyan = core.vec3f(0.0, 0.8, 0.9);\nConstellationMgr.setLinesColor(cyan);\n\n// Set to golden\nvar gold = core.vec3f(1.0, 0.84, 0.0);\nConstellationMgr.setLinesColor(gold);\n\n// Get current lines color\nvar color = ConstellationMgr.getLinesColor();\ncore.debug(\"Lines color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "getLinesColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "Vec3f getLinesColor()",
+        "description": "Returns the current color of constellation lines.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getLinesColor();\ncore.debug(\"Lines color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "setFlagLines",
+        "category": "Constellations - Display Control",
+        "signature": "setFlagLines(bool displayed)",
+        "description": "Shows or hides constellation lines that connect stars to form the official IAU constellation patterns.",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show constellation lines, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show constellation lines\nConstellationMgr.setFlagLines(true);\n\n// Hide constellation lines\nConstellationMgr.setFlagLines(false);\n\n// Show all constellation elements\nConstellationMgr.setFlagLines(true);\nConstellationMgr.setFlagLabels(true);\nConstellationMgr.setFlagBoundaries(true);"
+    },
+    {
+        "name": "getFlagLines",
+        "category": "Constellations - Display Control",
+        "signature": "bool getFlagLines()",
+        "description": "Returns whether constellation lines are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if lines are visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagLines()) {\n    core.debug(\"Constellation lines are visible\");\n}"
+    },
+    {
+        "name": "setLinesFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "setLinesFadeDuration(float duration)",
+        "description": "Sets the fade duration for constellation lines when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setLinesFadeDuration(1.0);\nvar fade = ConstellationMgr.getLinesFadeDuration();\ncore.debug(\"Lines fade duration: \" + fade);"
+    },
+    {
+        "name": "getLinesFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "float getLinesFadeDuration()",
+        "description": "Returns the current fade duration for constellation lines.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getLinesFadeDuration();"
+    },
+    {
+        "name": "setLabelsColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setLabelsColor(Vec3f color)",
+        "description": "Sets the color of constellation labels (names).",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set labels to white\nvar white = core.vec3f(1.0, 1.0, 1.0);\nConstellationMgr.setLabelsColor(white);\n\n// Set labels to light yellow\nvar lightYellow = core.vec3f(1.0, 1.0, 0.6);\nConstellationMgr.setLabelsColor(lightYellow);\n\nvar color = ConstellationMgr.getLabelsColor();\ncore.debug(\"Labels color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "getLabelsColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "Vec3f getLabelsColor()",
+        "description": "Returns the current color of constellation labels.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getLabelsColor();"
+    },
+    {
+        "name": "setFlagLabels",
+        "category": "Constellations - Display Control",
+        "signature": "setFlagLabels(bool displayed)",
+        "description": "Shows or hides constellation labels (names).",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show labels, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show constellation labels\nConstellationMgr.setFlagLabels(true);\n\n// Hide constellation labels\nConstellationMgr.setFlagLabels(false);"
+    },
+    {
+        "name": "getFlagLabels",
+        "category": "Constellations - Display Control",
+        "signature": "bool getFlagLabels()",
+        "description": "Returns whether constellation labels are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if labels are visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagLabels()) {\n    core.debug(\"Constellation labels are visible\");\n}"
+    },
+    {
+        "name": "setLabelsFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "setLabelsFadeDuration(float duration)",
+        "description": "Sets the fade duration for constellation labels when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setLabelsFadeDuration(1.0);\nvar fade = ConstellationMgr.getLabelsFadeDuration();"
+    },
+    {
+        "name": "getLabelsFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "float getLabelsFadeDuration()",
+        "description": "Returns the current fade duration for constellation labels.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getLabelsFadeDuration();"
+    },
+    {
+        "name": "setHullsColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setHullsColor(Vec3f color)",
+        "description": "Sets the color of constellation hulls (convex hull areas that outline each constellation's region on the sky).",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set hulls to red\nvar red = core.vec3f(1.0, 0.0, 0.0);\nConstellationMgr.setHullsColor(red);\n\nvar color = ConstellationMgr.getHullsColor();"
+    },
+    {
+        "name": "getHullsColor",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "Vec3f getHullsColor()",
+        "description": "Returns the current color of constellation hulls.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getHullsColor();"
+    },
+    {
+        "name": "setFlagHulls",
+        "category": "Constellations - Display Control",
+        "signature": "setFlagHulls(bool displayed)",
+        "description": "Shows or hides constellation hulls (convex hull areas outlining each constellation's region). Useful for visualizing constellation boundaries in a different way.",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show hulls, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show constellation hulls\nConstellationMgr.setFlagHulls(true);\n\n// Hide constellation hulls\nConstellationMgr.setFlagHulls(false);"
+    },
+    {
+        "name": "getFlagHulls",
+        "category": "Constellations - Display Control",
+        "signature": "bool getFlagHulls()",
+        "description": "Returns whether constellation hulls are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if hulls are visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagHulls()) {\n    core.debug(\"Constellation hulls are visible\");\n}"
+    },
+    {
+        "name": "setHullsFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "setHullsFadeDuration(float duration)",
+        "description": "Sets the fade duration for constellation hulls when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setHullsFadeDuration(1.5);\nvar fade = ConstellationMgr.getHullsFadeDuration();"
+    },
+    {
+        "name": "getHullsFadeDuration",
+        "category": "Constellations - Fade & Transitions",
+        "signature": "float getHullsFadeDuration()",
+        "description": "Returns the current fade duration for constellation hulls.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getHullsFadeDuration();"
+    },
+    {
+        "name": "setFontSize",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setFontSize(int newFontSize)",
+        "description": "Sets the font size used for displaying constellation names on screen.",
+        "parameters": [
+            {
+                "name": "newFontSize",
+                "type": "int",
+                "description": "Font size in pixels (recommended: 12-24)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Larger font for better readability\nConstellationMgr.setFontSize(18);\n\n// Default size\nConstellationMgr.setFontSize(15);\n\nvar fontSize = ConstellationMgr.getFontSize();\ncore.debug(\"Font size: \" + fontSize + \" pixels\");"
+    },
+    {
+        "name": "getFontSize",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "int getFontSize()",
+        "description": "Returns the current font size for constellation names in pixels.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Font size in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fontSize = ConstellationMgr.getFontSize();\ncore.debug(\"Current font size: \" + fontSize);"
+    },
+    {
+        "name": "setConstellationLineThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setConstellationLineThickness(int thickness)",
+        "description": "Sets the thickness of constellation lines in pixels.",
+        "parameters": [
+            {
+                "name": "thickness",
+                "type": "int",
+                "description": "Line thickness in pixels (minimum 1)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Thin elegant lines\nConstellationMgr.setConstellationLineThickness(1);\n\n// Thick visible lines\nConstellationMgr.setConstellationLineThickness(2);\n\nvar thickness = ConstellationMgr.getConstellationLineThickness();\ncore.debug(\"Line thickness: \" + thickness);"
+    },
+    {
+        "name": "getConstellationLineThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "int getConstellationLineThickness()",
+        "description": "Returns the current thickness of constellation lines in pixels.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Line thickness in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var thickness = ConstellationMgr.getConstellationLineThickness();"
+    },
+    {
+        "name": "setBoundariesThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setBoundariesThickness(int thickness)",
+        "description": "Sets the thickness of constellation boundary lines in pixels.",
+        "parameters": [
+            {
+                "name": "thickness",
+                "type": "int",
+                "description": "Boundary thickness in pixels (minimum 1)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setBoundariesThickness(1);\nvar thickness = ConstellationMgr.getBoundariesThickness();"
+    },
+    {
+        "name": "getBoundariesThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "int getBoundariesThickness()",
+        "description": "Returns the current thickness of constellation boundary lines.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Boundary thickness in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var thickness = ConstellationMgr.getBoundariesThickness();"
+    },
+    {
+        "name": "setHullsThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "setHullsThickness(int thickness)",
+        "description": "Sets the thickness of constellation hull lines in pixels.",
+        "parameters": [
+            {
+                "name": "thickness",
+                "type": "int",
+                "description": "Hull thickness in pixels (minimum 1)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setHullsThickness(1);\nvar thickness = ConstellationMgr.getHullsThickness();"
+    },
+    {
+        "name": "getHullsThickness",
+        "category": "Constellations - Colors & Appearance",
+        "signature": "int getHullsThickness()",
+        "description": "Returns the current thickness of constellation hull lines.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Hull thickness in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var thickness = ConstellationMgr.getHullsThickness();"
+    },
+    {
+        "name": "setZodiacColor",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "setZodiacColor(Vec3f color)",
+        "description": "Sets the color of zodiac lines (if defined in the current sky culture). The zodiac represents the path of the Sun through the constellations.",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set zodiac to gold\nvar gold = core.vec3f(1.0, 0.84, 0.0);\nConstellationMgr.setZodiacColor(gold);\n\nvar color = ConstellationMgr.getZodiacColor();"
+    },
+    {
+        "name": "getZodiacColor",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "Vec3f getZodiacColor()",
+        "description": "Returns the current color of zodiac lines.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getZodiacColor();"
+    },
+    {
+        "name": "setFlagZodiac",
+        "category": "Constellations - Display Control (Cultural)",
+        "signature": "setFlagZodiac(bool displayed)",
+        "description": "Shows or hides the zodiac lines (if defined in the current sky culture). The zodiac is a band of constellations along the ecliptic path.",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show zodiac, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show zodiac lines\nConstellationMgr.setFlagZodiac(true);\n\n// Hide zodiac lines\nConstellationMgr.setFlagZodiac(false);\n\nif(ConstellationMgr.getFlagZodiac()) {\n    core.debug(\"Zodiac is visible\");\n}"
+    },
+    {
+        "name": "getFlagZodiac",
+        "category": "Constellations - Display Control (Cultural)",
+        "signature": "bool getFlagZodiac()",
+        "description": "Returns whether zodiac lines are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if zodiac is visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagZodiac()) {\n    core.debug(\"Zodiac lines are visible\");\n}"
+    },
+    {
+        "name": "setZodiacFadeDuration",
+        "category": "Constellations - Fade & Transitions (Cultural)",
+        "signature": "setZodiacFadeDuration(float duration)",
+        "description": "Sets the fade duration for zodiac lines when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setZodiacFadeDuration(1.0);\nvar fade = ConstellationMgr.getZodiacFadeDuration();"
+    },
+    {
+        "name": "getZodiacFadeDuration",
+        "category": "Constellations - Fade & Transitions (Cultural)",
+        "signature": "float getZodiacFadeDuration()",
+        "description": "Returns the current fade duration for zodiac lines.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getZodiacFadeDuration();"
+    },
+    {
+        "name": "setZodiacThickness",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "setZodiacThickness(int thickness)",
+        "description": "Sets the thickness of zodiac lines in pixels.",
+        "parameters": [
+            {
+                "name": "thickness",
+                "type": "int",
+                "description": "Line thickness in pixels (minimum 1)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setZodiacThickness(2);\nvar thickness = ConstellationMgr.getZodiacThickness();"
+    },
+    {
+        "name": "getZodiacThickness",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "int getZodiacThickness()",
+        "description": "Returns the current thickness of zodiac lines.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Line thickness in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var thickness = ConstellationMgr.getZodiacThickness();"
+    },
+    {
+        "name": "setLunarSystemColor",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "setLunarSystemColor(Vec3f color)",
+        "description": "Sets the color of lunar system lines (lunar mansions or stations) if defined in the current sky culture.",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector (R, G, B) with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Set lunar system to cyan\nvar cyan = core.vec3f(0.0, 1.0, 0.5);\nConstellationMgr.setLunarSystemColor(cyan);\n\nvar color = ConstellationMgr.getLunarSystemColor();"
+    },
+    {
+        "name": "getLunarSystemColor",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "Vec3f getLunarSystemColor()",
+        "description": "Returns the current color of lunar system lines.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var color = ConstellationMgr.getLunarSystemColor();"
+    },
+    {
+        "name": "setFlagLunarSystem",
+        "category": "Constellations - Display Control (Cultural)",
+        "signature": "setFlagLunarSystem(bool displayed)",
+        "description": "Shows or hides lunar system lines (lunar mansions or stations) if defined in the current sky culture.",
+        "parameters": [
+            {
+                "name": "displayed",
+                "type": "bool",
+                "description": "true to show lunar system, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show lunar mansions\nConstellationMgr.setFlagLunarSystem(true);\n\n// Hide lunar mansions\nConstellationMgr.setFlagLunarSystem(false);\n\nif(ConstellationMgr.getFlagLunarSystem()) {\n    core.debug(\"Lunar system is visible\");\n}"
+    },
+    {
+        "name": "getFlagLunarSystem",
+        "category": "Constellations - Display Control (Cultural)",
+        "signature": "bool getFlagLunarSystem()",
+        "description": "Returns whether lunar system lines are visible.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if lunar system is visible, false if hidden",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.getFlagLunarSystem()) {\n    core.debug(\"Lunar system is visible\");\n}"
+    },
+    {
+        "name": "setLunarSystemFadeDuration",
+        "category": "Constellations - Fade & Transitions (Cultural)",
+        "signature": "setLunarSystemFadeDuration(float duration)",
+        "description": "Sets the fade duration for lunar system lines when they appear or disappear.",
+        "parameters": [
+            {
+                "name": "duration",
+                "type": "float",
+                "description": "Fade duration in seconds",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setLunarSystemFadeDuration(1.0);\nvar fade = ConstellationMgr.getLunarSystemFadeDuration();"
+    },
+    {
+        "name": "getLunarSystemFadeDuration",
+        "category": "Constellations - Fade & Transitions (Cultural)",
+        "signature": "float getLunarSystemFadeDuration()",
+        "description": "Returns the current fade duration for lunar system lines.",
+        "parameters": [],
+        "returnType": "float",
+        "returnDescription": "Fade duration in seconds",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var fade = ConstellationMgr.getLunarSystemFadeDuration();"
+    },
+    {
+        "name": "setLunarSystemThickness",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "setLunarSystemThickness(int thickness)",
+        "description": "Sets the thickness of lunar system lines in pixels.",
+        "parameters": [
+            {
+                "name": "thickness",
+                "type": "int",
+                "description": "Line thickness in pixels (minimum 1)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "ConstellationMgr.setLunarSystemThickness(2);\nvar thickness = ConstellationMgr.getLunarSystemThickness();"
+    },
+    {
+        "name": "getLunarSystemThickness",
+        "category": "Constellations - Colors & Appearance (Cultural)",
+        "signature": "int getLunarSystemThickness()",
+        "description": "Returns the current thickness of lunar system lines.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Line thickness in pixels",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var thickness = ConstellationMgr.getLunarSystemThickness();"
+    },
+    {
+        "name": "deselectConstellations",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "deselectConstellations()",
+        "description": "Deselects all constellations. If isolation mode is active, all constellations will be hidden.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Deselect all constellations\nConstellationMgr.deselectConstellations();\n\n// Clear selection after a presentation\nConstellationMgr.selectConstellation(\"Orion\");\ncore.wait(3);\nConstellationMgr.deselectConstellations();"
+    },
+    {
+        "name": "selectAllConstellations",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "selectAllConstellations()",
+        "description": "Selects all constellations in the sky. When isolation mode is enabled, all constellations become visible (same effect as disabling isolation).",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Select all constellations\nConstellationMgr.selectAllConstellations();\n\n// Enable isolation then show all\nConstellationMgr.setFlagIsolateSelected(true);\nConstellationMgr.selectAllConstellations();"
+    },
+    {
+        "name": "selectConstellation",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "selectConstellation(QString englishName)",
+        "description": "Selects a constellation by its English name. Automatically enables isolation mode if not already active.",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "English name of the constellation (e.g., 'Orion', 'Ursa Major', 'Taurus', 'Leo')",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Select Orion constellation\nConstellationMgr.selectConstellation(\"Orion\");\ncore.moveToObject(\"Betelgeuse\", 2);\n\n// Select Ursa Major (Big Dipper)\nConstellationMgr.selectConstellation(\"Ursa Major\");\n\n// Select Leo\nConstellationMgr.selectConstellation(\"Leo\");"
+    },
+    {
+        "name": "selectConstellationByObjectName",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "selectConstellationByObjectName(QString englishName)",
+        "description": "Selects the constellation where a celestial body (planet, star, etc.) is located. Automatically enables isolation mode if not already active.",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "English name of the celestial body (e.g., 'Venus', 'Sirius', 'Mars', 'Jupiter')",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Select constellation where Venus is currently located\nConstellationMgr.selectConstellationByObjectName(\"Venus\");\n\n// Select constellation containing Sirius\nConstellationMgr.selectConstellationByObjectName(\"Sirius\");\n\n// Select Mars' current constellation\nConstellationMgr.selectConstellationByObjectName(\"Mars\");\n\nvar info = core.getObjectInfo(\"Mars\");\ncore.debug(\"Mars is in: \" + info[\"constellation-id\"]);"
+    },
+    {
+        "name": "deselectConstellation",
+        "category": "Constellations - Selection & Isolation",
+        "signature": "deselectConstellation(QString englishName)",
+        "description": "Removes a specific constellation from the selected list. If this was the only selected constellation and isolation mode is active, all constellations become hidden.",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "English name of the constellation to deselect",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Select then deselect Orion\nConstellationMgr.selectConstellation(\"Orion\");\ncore.wait(3);\nConstellationMgr.deselectConstellation(\"Orion\");\n\n// Select multiple and then remove one\nConstellationMgr.selectConstellation(\"Orion\");\nConstellationMgr.selectConstellation(\"Taurus\");\nConstellationMgr.deselectConstellation(\"Orion\");\n// Only Taurus remains selected"
+    },
+    {
+        "name": "getConstellationsEnglishNames",
+        "category": "Constellations - Information & Utilities",
+        "signature": "QStringList getConstellationsEnglishNames()",
+        "description": "Returns a list of English names for all constellations in the currently loaded sky culture.",
+        "parameters": [],
+        "returnType": "QStringList",
+        "returnDescription": "List of constellation English names",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var constellations = ConstellationMgr.getConstellationsEnglishNames();\ncore.debug(\"Total constellations: \" + constellations.length);\n\n// Print first 10 constellations\nfor(var i=0; i<Math.min(10, constellations.length); i++) {\n    core.debug((i+1) + \". \" + constellations[i]);\n}"
+    },
+    {
+        "name": "hasZodiac",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "bool hasZodiac()",
+        "description": "Checks whether the current sky culture defines a zodiac (band of constellations along the ecliptic).",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if zodiac is defined in current sky culture",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.hasZodiac()) {\n    core.debug(\"Current sky culture has zodiac definition\");\n    var zodiacName = ConstellationMgr.getZodiacSystemName();\n    core.debug(\"Zodiac name: \" + zodiacName);\n} else {\n    core.debug(\"No zodiac defined in this sky culture\");\n}"
+    },
+    {
+        "name": "hasLunarSystem",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "bool hasLunarSystem()",
+        "description": "Checks whether the current sky culture defines a lunar system (lunar mansions or stations).",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if lunar system is defined in current sky culture",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(ConstellationMgr.hasLunarSystem()) {\n    core.debug(\"Current sky culture has lunar mansions\");\n    var lunarName = ConstellationMgr.getLunarSystemName();\n    core.debug(\"Lunar system name: \" + lunarName);\n}"
+    },
+    {
+        "name": "getZodiacSystemName",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "QString getZodiacSystemName()",
+        "description": "Returns the translated name of the zodiac system (e.g., 'Western Zodiac', 'Chinese Zodiac') as defined in the current sky culture.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Translated zodiac system name, or empty string if not defined",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var zodiacName = ConstellationMgr.getZodiacSystemName();\nif(zodiacName) {\n    core.debug(\"Zodiac system: \" + zodiacName);\n}"
+    },
+    {
+        "name": "getLunarSystemName",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "QString getLunarSystemName()",
+        "description": "Returns the translated name of the lunar system (e.g., 'Arabic Lunar Mansions', 'Chinese Lunar Mansions') as defined in the current sky culture.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Translated lunar system name, or empty string if not defined",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var lunarName = ConstellationMgr.getLunarSystemName();\nif(lunarName) {\n    core.debug(\"Lunar system: \" + lunarName);\n}"
+    },
+    {
+        "name": "getZodiacCoordinate",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "QString getZodiacCoordinate(Vec3d eqNow, bool narration)",
+        "description": "Returns the zodiac coordinate (sign, degrees, minutes) for a given equatorial position. Useful for cultural astronomy applications.",
+        "parameters": [
+            {
+                "name": "eqNow",
+                "type": "Vec3d",
+                "description": "Equatorial position vector (J2000 frame) of the celestial point",
+                "required": true
+            },
+            {
+                "name": "narration",
+                "type": "bool",
+                "description": "If true, returns a human-readable format suitable for narration",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Zodiac coordinate string, or empty string if not defined",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Get zodiac coordinate for Mars\nvar marsPos = core.getObjectInfo(\"Mars\")[\"position\"];\n// Note: Getting Vec3d position requires additional steps\n// This example shows the concept\n\n// Get zodiac coordinate for the Sun on today's date\ncore.setDate(\"now\");\nvar sunInfo = core.getObjectInfo(\"Sun\");\ncore.debug(\"Sun's zodiac position: \" + sunInfo[\"zodiac\"]);"
+    },
+    {
+        "name": "getLunarSystemCoordinate",
+        "category": "Constellations - Information & Utilities (Cultural)",
+        "signature": "QString getLunarSystemCoordinate(Vec3d eqNow, bool narration)",
+        "description": "Returns the lunar station/mansion coordinate for a given equatorial position. Useful for cultural astronomy applications.",
+        "parameters": [
+            {
+                "name": "eqNow",
+                "type": "Vec3d",
+                "description": "Equatorial position vector (J2000 frame) of the celestial point",
+                "required": true
+            },
+            {
+                "name": "narration",
+                "type": "bool",
+                "description": "If true, returns a human-readable format suitable for narration",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Lunar station coordinate string, or empty string if not defined",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Get lunar mansion for the Moon's position\nvar moonInfo = core.getObjectInfo(\"Moon\");\ncore.debug(\"Moon's lunar mansion: \" + moonInfo[\"lunar-system\"]);"
+    },
+    {
+        "name": "getIAUconstellationName",
+        "category": "Constellations - Information & Utilities",
+        "signature": "QString getIAUconstellationName(QString cst)",
+        "description": "Static method that returns the full IAU constellation name for a given three-letter abbreviation.",
+        "parameters": [
+            {
+                "name": "cst",
+                "type": "QString",
+                "description": "Three-letter IAU constellation abbreviation (e.g., 'Ori', 'UMa', 'Leo')",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Full constellation name (e.g., 'Orion', 'Ursa Major', 'Leo')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Get full name for Orion\nvar fullName = ConstellationMgr.getIAUconstellationName(\"Ori\");\ncore.debug(\"Ori = \" + fullName);\n\n// Get full name for Ursa Major\nvar umaName = ConstellationMgr.getIAUconstellationName(\"UMa\");\ncore.debug(\"UMa = \" + umaName);\n\n// Get full name for Leo\nvar leoName = ConstellationMgr.getIAUconstellationName(\"Leo\");\ncore.debug(\"Leo = \" + leoName);"
+    },
+    {
+        "name": "reloadSkyCulture",
+        "category": "Constellations - Advanced Settings",
+        "signature": "reloadSkyCulture()",
+        "description": "Reloads the current sky culture from disk. Useful after making changes to sky culture files or when debugging.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Reload sky culture after manual file edits\ncore.debug(\"Reloading sky culture...\");\nConstellationMgr.reloadSkyCulture();\ncore.debug(\"Sky culture reloaded\");"
+    },
+    {
+        "name": "outputHullAreas",
+        "category": "Constellations - Debug & Development",
+        "signature": "outputHullAreas(QString fileNamePrefix)",
+        "description": "Writes constellation hull areas to a CSV file in the Stellarium user data directory. Useful for developers analyzing constellation coverage.",
+        "parameters": [
+            {
+                "name": "fileNamePrefix",
+                "type": "QString",
+                "description": "Prefix for the output CSV file (default: 'hullAreas')",
+                "required": false,
+                "default": "\"hullAreas\""
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Development utility - may change in future versions"
+        },
+        "example": "// Export hull areas to CSV file\nConstellationMgr.outputHullAreas(\"my_hull_analysis\");\ncore.debug(\"Hull areas exported to user data directory\");"
+    },
+    {
+        "name": "starsInHullOf",
+        "category": "Constellations - Debug & Development",
+        "signature": "starsInHullOf(QString englishName, bool hipOnly, float maxMag, QString fileNamePrefix)",
+        "description": "Creates a CSV file listing all stars within the convex hull of a specified constellation. Useful for astronomical data analysis.",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "English name of the constellation (e.g., 'Orion', 'Ursa Major')",
+                "required": true
+            },
+            {
+                "name": "hipOnly",
+                "type": "bool",
+                "description": "If true, only list Hipparcos catalog stars",
+                "required": false,
+                "default": "true"
+            },
+            {
+                "name": "maxMag",
+                "type": "float",
+                "description": "Maximum magnitude to include (default: 25.0)",
+                "required": false,
+                "default": "25.0"
+            },
+            {
+                "name": "fileNamePrefix",
+                "type": "QString",
+                "description": "Prefix for the output CSV file (default: 'hullStars')",
+                "required": false,
+                "default": "\"hullStars\""
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Development utility - may change in future versions"
+        },
+        "example": "// Export all bright stars in Orion\nConstellationMgr.starsInHullOf(\"Orion\", true, 6.0, \"orion_stars\");\ncore.debug(\"Orion stars exported to CSV\");\n\n// Export all stars (including faint ones) in Ursa Major\nConstellationMgr.starsInHullOf(\"Ursa Major\", false, 25.0, \"ursa_major_stars\");"
+    }
+]

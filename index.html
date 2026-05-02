@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellarium Scripting API Reference</title>
+    
+    <!-- Font Awesome 6 (free icons, monochrome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <h1>
+            <i class="fas fa-code"></i> 
+            Stellarium Scripting API Reference
+        </h1>
+        <p>Complete reference extracted from Stellarium source files</p>
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-item">
+                <span class="stat-value">0</span>
+                <span class="stat-label">Total Functions</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabs Navigation -->
+<div class="tabs-container">
+    <div class="tabs" id="tabsContainer">
+        <button class="tab-btn active" data-tab="functions-tab">
+            <i class="fas fa-list-ul"></i>
+            <span class="tab-count" id="tab-functions-count">0</span>
+            All Functions
+        </button>
+        <button class="tab-btn" data-tab="favorites-tab">
+            <i class="fas fa-star"></i>
+            <span class="tab-count" id="tab-favorites-count">0</span>
+            Favorites
+        </button>
+        <button class="tab-btn" data-tab="recent-tab">
+            <i class="fas fa-history"></i>
+            <span class="tab-count" id="tab-recent-count">0</span>
+            Recent
+        </button>
+        <button class="tab-btn" data-tab="stats-tab">
+            <i class="fas fa-chart-bar"></i>
+            Statistics
+        </button>
+        <button class="tab-btn" data-tab="help-tab">
+            <i class="fas fa-question-circle"></i>
+            Help
+        </button>
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="main-content" id="mainContent">
+    
+    <!-- ==================== FUNCTIONS TAB ==================== -->
+    <div id="functions-tab" class="tab-panel active-panel">
+        
+        <!-- Filters Panel -->
+        <div class="filters-panel">
+            <div class="search-row">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Search functions by name, description, parameters...">
+                </div>
+            </div>
+            
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label><i class="fas fa-tag"></i> Function Type</label>
+                    <select id="typeFilter">
+                        <option value="all">All</option>
+                        <option value="static">Static Functions</option>
+                        <option value="method">Methods</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-arrow-left"></i> Return Type</label>
+                    <select id="returnFilter">
+                        <option value="all">All</option>
+                        <option value="void">void (no return)</option>
+                        <option value="has_return">has return value</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-cog"></i> Parameter Count</label>
+                    <select id="paramCountFilter">
+                        <option value="all">All</option>
+                        <option value="0">0 parameters</option>
+                        <option value="1">1 parameter</option>
+                        <option value="2">2 parameters</option>
+                        <option value="3+">3+ parameters</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fab fa-qt"></i> Qt Compatibility</label>
+                    <select id="compatFilter">
+                        <option value="all">All</option>
+                        <option value="both">Qt5 + Qt6</option>
+                        <option value="qt6">Qt6 Only</option>
+                        <option value="qt5">Qt5 Only</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Category Tags (dynamic) -->
+            <div class="category-tags" id="categoryTags"></div>
+            
+            <!-- Quick Controls -->
+            <div class="quick-controls">
+                <div id="moduleSelector"></div>
+                <button class="quick-btn" onclick="window.expandAll()">
+                    <i class="fas fa-angle-double-down"></i> Expand Examples
+                </button>
+                <button class="quick-btn" onclick="window.collapseAll()">
+                    <i class="fas fa-angle-double-up"></i> Collapse Examples
+                </button>
+                <button class="quick-btn" onclick="window.resetFilters()">
+                    <i class="fas fa-undo-alt"></i> Reset Filters
+                </button>
+                <button class="quick-btn" onclick="window.exportToJSON()">
+                    <i class="fas fa-file-code"></i> Export JSON
+                </button>
+                <button class="quick-btn" onclick="window.exportToCSV()">
+                    <i class="fas fa-file-csv"></i> Export CSV
+                </button>
+            </div>
+            
+            <!-- Search Results Info -->
+            <div class="search-results-info" id="searchResultsInfo" style="display: none;">
+                <i class="fas fa-info-circle"></i>
+                <span id="searchResultCount"></span> results found
+                <button class="clear-search-results" onclick="window.clearSearch()">
+                    <i class="fas fa-times"></i> Clear
+                </button>
+            </div>
+        </div>
+        
+        <!-- Functions Count -->
+        <div class="functions-count" id="functionsCount">
+            <i class="fas fa-spinner fa-pulse"></i> Loading functions...
+        </div>
+        
+        <!-- Functions Container (dynamic content) -->
+        <div id="functionsContainer">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p><i class="fas fa-spinner fa-pulse"></i> Loading modules...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== FAVORITES TAB ==================== -->
+    <div id="favorites-tab" class="tab-panel">
+        <div id="favoritesContainer">
+            <div class="empty-favorites">
+                <i class="far fa-star fa-3x"></i>
+                <p>No favorite functions yet</p>
+                <small>Click the star icon next to any function name to add it to favorites</small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== RECENT TAB ==================== -->
+    <div id="recent-tab" class="tab-panel">
+        <div id="recentContainer">
+            <div class="empty-recent">
+                <i class="fas fa-history fa-3x"></i>
+                <p>No recently viewed functions</p>
+                <small>Functions you view will appear here automatically</small>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== STATISTICS TAB ==================== -->
+    <div id="stats-tab" class="tab-panel">
+        <div id="statsContainer">
+            <div class="loading">
+                <i class="fas fa-spinner fa-pulse"></i> Loading statistics...
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== HELP TAB ==================== -->
+    <div id="help-tab" class="tab-panel">
+        <div id="helpContainer">
+            <div class="help-panel">
+                <h3><i class="fas fa-life-ring"></i> Welcome to Stellarium Scripting API Reference</h3>
+                <p><i class="fas fa-spinner fa-pulse"></i> Loading help content...</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- Scroll to Top Button -->
+<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="footer-content">
+        <div>
+            <i class="fas fa-copyright"></i> Stellarium Scripting API Reference
+        </div>
+        <div>
+            <i class="fas fa-file-code"></i> Extracted from StelMainScriptAPI.cpp and AsterismMgr.cpp
+        </div>
+        <div>
+            <i class="fas fa-database"></i> Total Functions: <span id="totalCountFooter">0</span>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Modules -->
+<script src="js/compatibility.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/modules/category-manager.js"></script>
+<script src="js/modules/export-utils.js"></script>
+<script src="js/modules/module-loader.js"></script>
+<script src="js/app.js"></script>
+
+<!-- Global Functions for UI Buttons -->
+<script>
+    // These functions are called from HTML buttons
+    window.expandAll = function() {
+        document.querySelectorAll('.example-section').forEach(function(el) {
+            el.style.display = 'block';
+        });
+    };
+    
+    window.collapseAll = function() {
+        document.querySelectorAll('.example-section').forEach(function(el) {
+            el.style.display = 'none';
+        });
+    };
+    
+    window.resetFilters = function() {
+        if (window.FilterManager) {
+            window.FilterManager.resetFilters();
+            var searchInput = document.getElementById('globalSearch');
+            if (searchInput) searchInput.value = '';
+            var typeSelect = document.getElementById('typeFilter');
+            if (typeSelect) typeSelect.value = 'all';
+            var returnSelect = document.getElementById('returnFilter');
+            if (returnSelect) returnSelect.value = 'all';
+            var paramSelect = document.getElementById('paramCountFilter');
+            if (paramSelect) paramSelect.value = 'all';
+            var compatSelect = document.getElementById('compatFilter');
+            if (compatSelect) compatSelect.value = 'all';
+            document.querySelectorAll('.cat-tag').forEach(function(t) {
+                t.classList.remove('active');
+            });
+            if (window.refreshCurrentView) window.refreshCurrentView();
+        }
+    };
+    
+    window.clearSearch = function() {
+        var searchInput = document.getElementById('globalSearch');
+        if (searchInput) {
+            searchInput.value = '';
+            if (window.FilterManager) {
+                window.FilterManager.setSearchText('');
+                if (window.refreshCurrentView) window.refreshCurrentView();
+            }
+        }
+    };
+    
+    window.exportToJSON = function() {
+        if (window.ExportUtils && window.globalFunctions) {
+            window.ExportUtils.exportToJSON(window.globalFunctions);
+        }
+    };
+    
+    window.exportToCSV = function() {
+        if (window.ExportUtils && window.globalFunctions) {
+            window.ExportUtils.exportToCSV(window.globalFunctions);
+        }
+    };
+</script>
+</body>
+</html>

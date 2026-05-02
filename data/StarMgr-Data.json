@@ -1,0 +1,369 @@
+[
+    {
+        "name": "getGcvsDesignation",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsDesignation(StarId hip)",
+        "description": "Returns the GCVS (General Catalogue of Variable Stars) designation for a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "GCVS designation (e.g., 'RR Lyr', 'δ Cep')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var gcvs = StarMgr.getGcvsDesignation(95497);\ncore.debug(\"Variable star designation: \" + gcvs); // 'RR Lyr'"
+    },
+    {
+        "name": "getGcvsVariabilityType",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsVariabilityType(StarId hip)",
+        "description": "Returns the variability type of a variable star (e.g., 'RRAB', 'DCEP', 'EA').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Variability type code",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var varType = StarMgr.getGcvsVariabilityType(95497);\ncore.debug(\"Variability type: \" + varType);"
+    },
+    {
+        "name": "getGcvsMaxMagnitude",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getGcvsMaxMagnitude(StarId hip)",
+        "description": "Returns the maximum magnitude (brightest) of a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Maximum magnitude",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var maxMag = StarMgr.getGcvsMaxMagnitude(95497);\ncore.debug(\"RR Lyr max magnitude: \" + maxMag);"
+    },
+    {
+        "name": "getGcvsMinMagnitude",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getGcvsMinMagnitude(StarId hip, bool firstMinimumFlag)",
+        "description": "Returns the minimum magnitude (faintest) of a variable star. For Algol-type stars, can get first or second minimum.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            },
+            {
+                "name": "firstMinimumFlag",
+                "type": "bool",
+                "description": "If true, returns first minimum; if false, returns second minimum",
+                "required": false,
+                "default": "true"
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Minimum magnitude",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var minMag = StarMgr.getGcvsMinMagnitude(95497);\ncore.debug(\"RR Lyr min magnitude: \" + minMag);"
+    },
+    {
+        "name": "getGcvsPeriod",
+        "category": "Stars Manager - Star Data",
+        "signature": "double getGcvsPeriod(StarId hip)",
+        "description": "Returns the period of a variable star in days.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "double",
+        "returnDescription": "Period in days",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var period = StarMgr.getGcvsPeriod(95497);\ncore.debug(\"RR Lyr period: \" + period + \" days\");"
+    },
+    {
+        "name": "getGcvsEpoch",
+        "category": "Stars Manager - Star Data",
+        "signature": "double getGcvsEpoch(StarId hip)",
+        "description": "Returns the epoch for maximum light of a variable star in Julian Days.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "double",
+        "returnDescription": "Epoch in Julian Days",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var epoch = StarMgr.getGcvsEpoch(95497);\ncore.debug(\"Maximum light epoch: \" + epoch);"
+    },
+    {
+        "name": "getGcvsPhotometricSystem",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsPhotometricSystem(StarId hip)",
+        "description": "Returns the photometric system used for magnitude measurements of a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Photometric system (e.g., 'V', 'B', 'p')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var photosys = StarMgr.getGcvsPhotometricSystem(95497);\ncore.debug(\"Photometric system: \" + photosys);"
+    },
+    {
+        "name": "getGcvsSpectralType",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsSpectralType(StarId hip)",
+        "description": "Returns the spectral type of a variable star from GCVS data.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Spectral type",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var spec = StarMgr.getGcvsSpectralType(95497);\ncore.debug(\"Spectral type: \" + spec);"
+    },
+    {
+        "name": "getGcvsMagnitudeFlag",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getGcvsMagnitudeFlag(StarId hip)",
+        "description": "Returns the magnitude flag code for a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Magnitude flag code",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var flag = StarMgr.getGcvsMagnitudeFlag(95497);\ncore.debug(\"Magnitude flag: \" + flag);"
+    },
+    {
+        "name": "getGcvsMM",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getGcvsMM(StarId hip)",
+        "description": "Returns the rising time or duration of eclipse for a variable star in percent.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Eclipse duration in percent",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var mm = StarMgr.getGcvsMM(14576); // Algol\ncore.debug(\"Eclipse duration: \" + mm + \"%\");"
+    },
+    {
+        "name": "getWdsDesignation",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getWdsDesignation(StarId hip)",
+        "description": "Returns the Washington Double Star (WDS) catalog designation for a double star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "WDS designation (e.g., 'WDS J12345+6789')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var wds = StarMgr.getWdsDesignation(95947); // Albireo\ncore.debug(\"WDS designation: \" + wds);"
+    },
+    {
+        "name": "getWdsLastObservation",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getWdsLastObservation(StarId hip)",
+        "description": "Returns the year of the last satisfactory observation of a double star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Year of last observation",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var lastObs = StarMgr.getWdsLastObservation(95947);\ncore.debug(\"Last observation: \" + lastObs);"
+    },
+    {
+        "name": "getWdsLastPositionAngle",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getWdsLastPositionAngle(StarId hip)",
+        "description": "Returns the position angle (in degrees) of a double star at the last observation.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Position angle in degrees",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var pa = StarMgr.getWdsLastPositionAngle(95947);\ncore.debug(\"Position angle: \" + pa + \"°\");"
+    },
+    {
+        "name": "getWdsLastSeparation",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getWdsLastSeparation(StarId hip)",
+        "description": "Returns the separation (in arcseconds) of a double star at the last observation.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Separation in arcseconds",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sep = StarMgr.getWdsLastSeparation(95947);\ncore.debug(\"Separation: \" + sep + \" arcsec\");"
+    },
+    {
+        "name": "getBinaryOrbitData",
+        "category": "Stars Manager - Star Data",
+        "signature": "binaryorbitstar getBinaryOrbitData(StarId hip)",
+        "description": "Returns binary orbit parameters for a binary star system (period, eccentricity, inclination, masses, etc.).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "binaryorbitstar",
+        "returnDescription": "Binary orbit data structure",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var orbit = StarMgr.getBinaryOrbitData(95947);\nif(orbit.hip) {\n    core.debug(\"Period: \" + orbit.binary_period + \" days\");\n    core.debug(\"Eccentricity: \" + orbit.eccentricity);\n    core.debug(\"Primary mass: \" + orbit.primary_mass + \" M☉\");\n}"
+    }
+]

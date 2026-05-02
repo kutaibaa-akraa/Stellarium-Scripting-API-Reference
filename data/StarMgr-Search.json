@@ -1,0 +1,122 @@
+[
+    {
+        "name": "searchHP",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchHP(int hipNumber)",
+        "description": "Searches for a star by its Hipparcos catalog number.",
+        "parameters": [
+            {
+                "name": "hipNumber",
+                "type": "int",
+                "description": "Hipparcos catalog number (e.g., 32349 for Sirius)",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchHP(32349);\nif(sirius) {\n    core.debug(\"Found Sirius\");\n    core.moveToObject(sirius.getEnglishName(), 2);\n}"
+    },
+    {
+        "name": "searchGaia",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchGaia(StarId sourceId)",
+        "description": "Searches for a star by its Gaia DR3 source ID.",
+        "parameters": [
+            {
+                "name": "sourceId",
+                "type": "StarId",
+                "description": "Gaia DR3 source ID",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.19.0",
+            "notes": "Requires Gaia catalog data"
+        },
+        "example": "var star = StarMgr.searchGaia(1679274403719601152);\nif(star) {\n    core.debug(\"Found Gaia star\");\n}"
+    },
+    {
+        "name": "searchByID",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByID(QString id)",
+        "description": "Searches for a star by its identifier (HIP, SAO, HD, HR, GCVS, WDS, or common name).",
+        "parameters": [
+            {
+                "name": "id",
+                "type": "QString",
+                "description": "Star identifier (e.g., 'HIP 32349', 'SAO 151881', 'Sirius')",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var star = StarMgr.searchByID(\"HIP 32349\");\nstar = StarMgr.searchByID(\"SAO 151881\");\nstar = StarMgr.searchByID(\"HD 48915\");"
+    },
+    {
+        "name": "searchByNameI18n",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByNameI18n(QString name)",
+        "description": "Searches for a star by its translated (localized) name.",
+        "parameters": [
+            {
+                "name": "name",
+                "type": "QString",
+                "description": "Translated star name",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchByNameI18n(StarMgr.getCommonNameI18n(32349));"
+    },
+    {
+        "name": "searchByName",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByName(QString name)",
+        "description": "Searches for a star by its English name or catalog number.",
+        "parameters": [
+            {
+                "name": "name",
+                "type": "QString",
+                "description": "English star name or catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var betelgeuse = StarMgr.searchByName(\"Betelgeuse\");\nvar polaris = StarMgr.searchByName(\"Polaris\");"
+    }
+]

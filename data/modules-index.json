@@ -1,0 +1,214 @@
+{
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-01",
+    "modules": [
+        {
+            "id": "StelMainScriptAPI",
+            "name": "Core API",
+            "file": "StelMainScriptAPI.json",
+            "category": "Core",
+            "order": 1,
+            "description": "Main Stellarium scripting API - core.* functions including time, date, location, movement, object selection, and multimedia"
+        },
+        {
+            "id": "AsterismMgr",
+            "name": "Asterism Manager",
+            "file": "AsterismMgr.json",
+            "category": "Modules",
+            "order": 2,
+            "description": "Asterism (star pattern) management functions for informal star patterns like Summer Triangle, Big Dipper"
+        },
+        {
+            "id": "ConstellationMgr",
+            "name": "Constellation Manager",
+            "file": "ConstellationMgr.json",
+            "category": "Modules",
+            "order": 3,
+            "description": "Constellation lines, boundaries, artwork, and cultural astronomy systems including zodiac and lunar mansions"
+        },
+        {
+            "id": "CustomObjectMgr",
+            "name": "Custom Object Manager",
+            "file": "CustomObjectMgr.json",
+            "category": "Modules",
+            "order": 4,
+            "description": "Custom objects and markers management - add, remove, and customize markers on the celestial sphere"
+        },
+        {
+            "id": "HighlightMgr",
+            "name": "Highlight Manager",
+            "file": "HighlightMgr.json",
+            "category": "Modules",
+            "order": 5,
+            "description": "Highlight markers management - add, remove, and customize visual markers on the celestial sphere"
+        },
+				{
+						"id": "GridLinesMgr",
+						"name": "Grid Lines Manager",
+						"file": "GridLinesMgr.json",
+						"category": "Modules",
+						"order": 6,
+						"description": "Manages all celestial coordinate grids, great circles, and reference points"
+				},
+				{
+						"id": "LabelMgr",
+						"name": "Label Manager",
+						"file": "LabelMgr.json",
+						"category": "Modules",
+						"order": 7,
+						"description": "Custom label management - create text labels attached to celestial objects, fixed coordinates (horizon/equatorial), or screen positions with customizable colors, fonts, and auto-delete options"
+				},
+				{
+						"id": "MarkerMgr",
+						"name": "Marker Manager",
+						"file": "MarkerMgr.json",
+						"category": "Modules",
+						"order": 8,
+						"description": "Custom marker management - create visual markers attached to celestial objects, fixed equatorial coordinates, or horizon positions with customizable shapes, colors, sizes, and auto-delete options"
+				},
+				{
+            "id": "LandscapeMgr",
+            "name": "Landscape Manager",
+            "file": "LandscapeMgr.json",
+            "category": "Modules",
+            "order": 9,
+            "description": "Core landscape management functions, Atmosphere model and rendering controls, Cardinal and ordinal compass point displays, Landscape display options (fog, illumination, labels, transparency), Landscape installation, removal, and management"
+        },
+        {
+            "id": "SporadicMeteorMgr",
+            "name": "Sporadic Meteor Manager",
+            "file": "SporadicMeteorMgr.json",
+            "category": "Astronomy",
+            "order": 10,
+            "description": "Background sporadic meteor simulation with random radiants and colors"
+        },
+        {
+            "id": "NebulaMgr",
+            "name": "Nebula Manager",
+            "file": "NebulaMgr.json",
+            "category": "Modules",
+            "order": 11,
+            "description": "Core deep-sky object display controls, Marker colors for all types of deep-sky objects, Catalog and type filtering for deep-sky objects, Search functions for deep-sky objects by catalog number, Advanced settings for deep-sky object display, Utility functions for deep-sky objects"
+        },
+        {
+            "id": "ScreenImageMgr",
+            "name": "Screen Image Manager",
+            "file": "ScreenImageMgr.json",
+            "category": "Multimedia",
+            "order": 12,
+            "description": "Screen image management - create, move, scale, fade, and delete overlay images on the screen for presentations and scripts"
+        },
+        {
+            "id": "SolarSystem",
+            "name": "Solar System",
+            "file": "SolarSystem.json",
+            "category": "Solar System",
+            "order": 13,
+            "description": "Core solar system display controls, Orbit and label colors for solar system bodies, Size scaling for planets, Moon, Sun, and minor bodies, Ephemeris marker and path visualization, Search and information functions for solar system bodies, Advanced solar system settings (threads, magnitudes, orbits), Utility functions for solar system management"
+        },
+        {
+            "id": "StarMgr",
+            "name": "Stars Manager",
+            "file": "StarMgr.json",
+            "category": "Stars",
+            "order": 14,
+            "description": "Core star display controls and settings, Star names (common, cultural, scientific) and designations, double star, and binary orbit data, Search functions for stars by catalog numberLists of Hipparcos stars (double, variable, carbon, etc.)"
+        },
+        {
+            "id": "StelActionMgr",
+            "name": "Actions Manager",
+            "file": "StelActionMgr.json",
+            "category": "Core",
+            "order": 15,
+            "description": "Keyboard shortcuts and actions management - create, find, and trigger actions, manage shortcuts"
+        },
+				{
+						"id": "StelAudioMgr",
+						"name": "Audio Manager",
+						"file": "StelAudioMgr.json",
+						"category": "Multimedia",
+						"order": 16,
+						"description": "Audio playback management - load, play, pause, stop, and unload sound files (MP3, WAV, OGG, FLAC) with position and duration queries"
+				},
+				{
+						"id": "StelVideoMgr",
+						"name": "Video Manager",
+						"file": "StelVideoMgr.json",
+						"category": "Multimedia",
+						"order": 17,
+						"description": "Video playback management - load, play, pause, stop, seek, resize, and control video files with support for popout effects and audio control"
+				},
+				{
+						"id": "StelMovementMgr",
+						"name": "Movement Manager",
+						"file": "StelMovementMgr.json",
+						"category": "Core",
+						"order": 18,
+						"description": "Camera and view movement management - pan, zoom, tracking, mount modes, and viewport control"
+				},
+				{
+						"id": "StelSkyDrawer",
+						"name": "Sky Drawer",
+						"file": "StelSkyDrawer.json",
+						"category": "Core",
+						"order": 19,
+						"description": "Sky rendering control - star appearance, twinkling, light pollution, magnitude limits, eye adaptation, atmospheric refraction and extinction"
+				},
+				{
+						"id": "StelSkyLayerMgr",
+						"name": "Sky Layer Manager",
+						"file": "StelSkyLayerMgr.json",
+						"category": "Core",
+						"order": 20,
+						"description": "Sky background image management - load, display, and control deep-sky object textures, DSS images, and custom sky overlays"
+				},
+				{
+						"id": "SpecialMarkersMgr",
+						"name": "Special Markers Manager",
+						"file": "SpecialMarkersMgr.json",
+						"category": "Display",
+						"order": 21,
+						"description": "Special markers management - FOV center crosshair, circular FOV marker, rectangular FOV marker (for camera framing), and compass marks around the horizon"
+				},
+				{
+						"id": "MilkyWay",
+						"name": "Milky Way",
+						"file": "MilkyWay.json",
+						"category": "Astronomy",
+						"order": 22,
+						"description": "Milky Way galaxy rendering - control visibility, intensity, saturation, and color tint of our galaxy's appearance across the night sky"
+				},
+				{
+						"id": "ZodiacalLight",
+						"name": "Zodiacal Light",
+						"file": "ZodiacalLight.json",
+						"category": "Astronomy",
+						"order": 23,
+						"description": "Zodiacal Light rendering - control visibility, intensity, and color of the faint diffuse glow caused by sunlight scattering off interplanetary dust along the ecliptic plane"
+				},
+				{
+						"id": "HipsMgr",
+						"name": "HiPS Manager",
+						"file": "HipsMgr.json",
+						"category": "Deep Sky",
+						"order": 24,
+						"description": "Hierarchical Progressive Surveys (HiPS) management - load and display all-sky survey images from professional observatories (DSS, SDSS, GALEX, etc.)"
+				},
+				{
+						"id": "NomenclatureMgr",
+						"name": "Nomenclature Manager",
+						"file": "NomenclatureMgr.json",
+						"category": "Solar System",
+						"order": 25,
+						"description": "Planetary surface nomenclature management - display names of craters, mountains, valleys, and other geological features on planets and moons"
+				},
+				{
+						"id": "Oculars",
+						"name": "Oculars Plugin",
+						"file": "Oculars.json",
+						"category": "Plugins",
+						"order": 26,
+						"description": "Oculars plugin - simulate view through telescope eyepieces, CCD sensor framing, Telrad finder, and astrophotography planning"
+				}
+    ]
+}

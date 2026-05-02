@@ -1,0 +1,422 @@
+[
+    {
+        "name": "getFlagShowNomenclature",
+        "category": "Nomenclature Manager - Core",
+        "signature": "bool getFlagShowNomenclature()",
+        "description": "Returns whether planetary surface nomenclature labels (names of craters, mountains, valleys, etc.) are displayed on planets and moons.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if nomenclature labels are visible, false if hidden",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "if(NomenclatureMgr.getFlagShowNomenclature()) {\n    core.debug(\"Planetary surface feature names are visible\");\n} else {\n    NomenclatureMgr.setFlagShowNomenclature(true);\n}"
+    },
+    {
+        "name": "setFlagShowNomenclature",
+        "category": "Nomenclature Manager - Core",
+        "signature": "setFlagShowNomenclature(bool visible)",
+        "description": "Shows or hides planetary surface nomenclature labels (craters, mountains, valleys, etc.) on planets and moons.",
+        "parameters": [
+            {
+                "name": "visible",
+                "type": "bool",
+                "description": "true to show nomenclature labels, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Show crater and feature names on planets\nNomenclatureMgr.setFlagShowNomenclature(true);\n\n// Hide feature names\nNomenclatureMgr.setFlagShowNomenclature(false);"
+    },
+    {
+        "name": "getFlagShowTerminatorZoneOnly",
+        "category": "Nomenclature Manager - Display",
+        "signature": "bool getFlagShowTerminatorZoneOnly()",
+        "description": "Returns whether nomenclature labels are displayed only near the terminator (day/night boundary) rather than across the entire planetary disk.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if only terminator zone labels are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "if(NomenclatureMgr.getFlagShowTerminatorZoneOnly()) {\n    core.debug(\"Only terminator zone nomenclature is visible\");\n}"
+    },
+    {
+        "name": "setFlagShowTerminatorZoneOnly",
+        "category": "Nomenclature Manager - Display",
+        "signature": "setFlagShowTerminatorZoneOnly(bool onlyTerminator)",
+        "description": "Sets whether nomenclature labels should be shown only near the terminator zone (day/night boundary). This helps reduce visual clutter on the illuminated side.",
+        "parameters": [
+            {
+                "name": "onlyTerminator",
+                "type": "bool",
+                "description": "true to show only terminator zone labels, false to show all",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Show only features near terminator\nNomenclatureMgr.setFlagShowTerminatorZoneOnly(true);\n\n// Show all features\nNomenclatureMgr.setFlagShowTerminatorZoneOnly(false);"
+    },
+    {
+        "name": "getTerminatorMinAltitude",
+        "category": "Nomenclature Manager - Terminator",
+        "signature": "int getTerminatorMinAltitude()",
+        "description": "Returns the minimum solar altitude angle (in degrees) for displaying nomenclature labels near the terminator. Features with solar altitude below this value are hidden.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Minimum solar altitude in degrees (-90 to 90, default: -5)",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var minAlt = NomenclatureMgr.getTerminatorMinAltitude();\ncore.debug(\"Terminator min altitude: \" + minAlt + \"°\");"
+    },
+    {
+        "name": "setTerminatorMinAltitude",
+        "category": "Nomenclature Manager - Terminator",
+        "signature": "setTerminatorMinAltitude(int degrees)",
+        "description": "Sets the minimum solar altitude angle for displaying nomenclature labels near the terminator.",
+        "parameters": [
+            {
+                "name": "degrees",
+                "type": "int",
+                "description": "Minimum solar altitude in degrees (-90 to 90)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Show features with solar altitude between -5° and 40°\nNomenclatureMgr.setTerminatorMinAltitude(-5);\nNomenclatureMgr.setTerminatorMaxAltitude(40);\nNomenclatureMgr.setFlagShowTerminatorZoneOnly(true);"
+    },
+    {
+        "name": "getTerminatorMaxAltitude",
+        "category": "Nomenclature Manager - Terminator",
+        "signature": "int getTerminatorMaxAltitude()",
+        "description": "Returns the maximum solar altitude angle (in degrees) for displaying nomenclature labels near the terminator. Features with solar altitude above this value are hidden.",
+        "parameters": [],
+        "returnType": "int",
+        "returnDescription": "Maximum solar altitude in degrees (-90 to 90, default: 40)",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var maxAlt = NomenclatureMgr.getTerminatorMaxAltitude();\ncore.debug(\"Terminator max altitude: \" + maxAlt + \"°\");"
+    },
+    {
+        "name": "setTerminatorMaxAltitude",
+        "category": "Nomenclature Manager - Terminator",
+        "signature": "setTerminatorMaxAltitude(int degrees)",
+        "description": "Sets the maximum solar altitude angle for displaying nomenclature labels near the terminator.",
+        "parameters": [
+            {
+                "name": "degrees",
+                "type": "int",
+                "description": "Maximum solar altitude in degrees (-90 to 90)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "NomenclatureMgr.setTerminatorMaxAltitude(45);"
+    },
+    {
+        "name": "getFlagOutlineCraters",
+        "category": "Nomenclature Manager - Display",
+        "signature": "bool getFlagOutlineCraters()",
+        "description": "Returns whether craters and satellite features are outlined as ellipses on the planetary surface.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if crater outlines are drawn",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "if(NomenclatureMgr.getFlagOutlineCraters()) {\n    core.debug(\"Crater outlines are drawn\");\n}"
+    },
+    {
+        "name": "setFlagOutlineCraters",
+        "category": "Nomenclature Manager - Display",
+        "signature": "setFlagOutlineCraters(bool outline)",
+        "description": "Sets whether craters and satellite features should be outlined as ellipses on the planetary surface, making them easier to identify.",
+        "parameters": [
+            {
+                "name": "outline",
+                "type": "bool",
+                "description": "true to draw crater outlines, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Draw elliptical outlines around craters\nNomenclatureMgr.setFlagOutlineCraters(true);\n\n// Hide crater outlines\nNomenclatureMgr.setFlagOutlineCraters(false);"
+    },
+    {
+        "name": "getFlagHideLocalNomenclature",
+        "category": "Nomenclature Manager - Display",
+        "signature": "bool getFlagHideLocalNomenclature()",
+        "description": "Returns whether nomenclature labels are hidden on the celestial body the observer is currently located on (e.g., hiding Earth features when on Earth).",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if local nomenclature is hidden",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "if(NomenclatureMgr.getFlagHideLocalNomenclature()) {\n    core.debug(\"Labels on the current planet are hidden\");\n}"
+    },
+    {
+        "name": "setFlagHideLocalNomenclature",
+        "category": "Nomenclature Manager - Display",
+        "signature": "setFlagHideLocalNomenclature(bool hide)",
+        "description": "Sets whether nomenclature labels should be hidden on the celestial body the observer is currently located on.",
+        "parameters": [
+            {
+                "name": "hide",
+                "type": "bool",
+                "description": "true to hide local nomenclature, false to show",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Hide Earth features when on Earth\nNomenclatureMgr.setFlagHideLocalNomenclature(true);\n\n// Show Earth features even when on Earth\nNomenclatureMgr.setFlagHideLocalNomenclature(false);"
+    },
+    {
+        "name": "getFlagShowSpecialNomenclatureOnly",
+        "category": "Nomenclature Manager - Display",
+        "signature": "bool getFlagShowSpecialNomenclatureOnly()",
+        "description": "Returns whether only special nomenclature points (poles, east, west, subsolar point) are displayed instead of all surface features.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if only special points are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "if(NomenclatureMgr.getFlagShowSpecialNomenclatureOnly()) {\n    core.debug(\"Only poles and special points are shown\");\n}"
+    },
+    {
+        "name": "setFlagShowSpecialNomenclatureOnly",
+        "category": "Nomenclature Manager - Display",
+        "signature": "setFlagShowSpecialNomenclatureOnly(bool onlySpecial)",
+        "description": "Sets whether only special nomenclature points (poles, east/west, subsolar point) are displayed.",
+        "parameters": [
+            {
+                "name": "onlySpecial",
+                "type": "bool",
+                "description": "true to show only special points, false to show all features",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Show only poles and special points\nNomenclatureMgr.setFlagShowSpecialNomenclatureOnly(true);\n\n// Show all surface features\nNomenclatureMgr.setFlagShowSpecialNomenclatureOnly(false);"
+    },
+    {
+        "name": "getColor",
+        "category": "Nomenclature Manager - Appearance",
+        "signature": "Vec3f getColor()",
+        "description": "Returns the current color of planetary surface nomenclature labels.",
+        "parameters": [],
+        "returnType": "Vec3f",
+        "returnDescription": "RGB color vector",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var color = NomenclatureMgr.getColor();\ncore.debug(\"Nomenclature color: RGB(\" + color[0] + \", \" + color[1] + \", \" + color[2] + \")\");"
+    },
+    {
+        "name": "setColor",
+        "category": "Nomenclature Manager - Appearance",
+        "signature": "setColor(Vec3f color)",
+        "description": "Sets the color of planetary surface nomenclature labels.",
+        "parameters": [
+            {
+                "name": "color",
+                "type": "Vec3f",
+                "description": "RGB color vector with values between 0.0 and 1.0",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Set nomenclature labels to light green\nvar lightGreen = core.vec3f(0.2, 0.8, 0.2);\nNomenclatureMgr.setColor(lightGreen);\n\n// Set to cyan\nvar cyan = core.vec3f(0.0, 0.8, 0.9);\nNomenclatureMgr.setColor(cyan);"
+    },
+    {
+        "name": "updateI18n",
+        "category": "Nomenclature Manager - Internationalization",
+        "signature": "updateI18n()",
+        "description": "Updates the translations of all nomenclature item names based on the current UI language.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Force translation update after language change\nNomenclatureMgr.updateI18n();"
+    },
+    {
+        "name": "updateNomenclatureData",
+        "category": "Nomenclature Manager - Data Management",
+        "signature": "updateNomenclatureData()",
+        "description": "Reloads and updates all nomenclature data from the data file. Called automatically when solar system data is reloaded.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "// Reload nomenclature data after manual file edit\nNomenclatureMgr.updateNomenclatureData();\ncore.debug(\"Nomenclature data reloaded\");"
+    },
+    {
+        "name": "searchByEnglishName",
+        "category": "Nomenclature Manager - Search",
+        "signature": "NomenclatureItemP searchByEnglishName(QString englishName)",
+        "description": "Searches for a planetary surface feature by its English name (e.g., 'Copernicus', 'Tycho', 'Olympus Mons').",
+        "parameters": [
+            {
+                "name": "englishName",
+                "type": "QString",
+                "description": "English name of the surface feature",
+                "required": true
+            }
+        ],
+        "returnType": "NomenclatureItemP",
+        "returnDescription": "Nomenclature item object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var t = NomenclatureMgr.searchByEnglishName(\"Tycho\");\nif(t) {\n    core.debug(\"Found Tycho crater on the Moon\");\n    core.moveToObject(t.getEnglishName(), 2);\n}"
+    },
+    {
+        "name": "getName",
+        "category": "Nomenclature Manager - Information",
+        "signature": "QString getName()",
+        "description": "Returns the display name of the Nomenclature Manager module.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Module name ('Geological features')",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var name = NomenclatureMgr.getName();\ncore.debug(\"Module: \" + name);"
+    },
+    {
+        "name": "getStelObjectType",
+        "category": "Nomenclature Manager - Information",
+        "signature": "QString getStelObjectType()",
+        "description": "Returns the object type identifier for nomenclature items.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Object type ('NomenclatureItem')",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.17.0",
+            "notes": "Introduced in Stellarium 0.17.0"
+        },
+        "example": "var objType = NomenclatureMgr.getStelObjectType();\ncore.debug(\"Object type: \" + objType);"
+    }
+]

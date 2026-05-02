@@ -1,0 +1,1343 @@
+[
+    {
+        "name": "getFlagStars",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagStars()",
+        "description": "Returns whether stars are currently displayed in the sky.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if stars are visible, false if hidden",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagStars()) {\n    core.debug(\"Stars are visible\");\n} else {\n    StarMgr.setFlagStars(true);\n}"
+    },
+    {
+        "name": "setFlagStars",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagStars(bool visible)",
+        "description": "Shows or hides all stars in the sky.",
+        "parameters": [
+            {
+                "name": "visible",
+                "type": "bool",
+                "description": "true to show stars, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Hide all stars\nStarMgr.setFlagStars(false);\n\n// Show all stars\nStarMgr.setFlagStars(true);\n\n// Toggle stars\nvar current = StarMgr.getFlagStars();\nStarMgr.setFlagStars(!current);"
+    },
+    {
+        "name": "getFlagLabels",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagLabels()",
+        "description": "Returns whether star labels (names) are currently displayed.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if star labels are visible, false if hidden",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagLabels()) {\n    core.debug(\"Star labels are visible\");\n}"
+    },
+    {
+        "name": "setFlagLabels",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagLabels(bool visible)",
+        "description": "Shows or hides star labels (names).",
+        "parameters": [
+            {
+                "name": "visible",
+                "type": "bool",
+                "description": "true to show labels, false to hide",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show star names\nStarMgr.setFlagLabels(true);\n\n// Hide star names\nStarMgr.setFlagLabels(false);"
+    },
+    {
+        "name": "getLabelsAmount",
+        "category": "Stars Manager - Core",
+        "signature": "double getLabelsAmount()",
+        "description": "Returns the amount of star labels displayed. Higher values show labels for fainter stars.",
+        "parameters": [],
+        "returnType": "double",
+        "returnDescription": "Labels amount (0.0 to 10.0)",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var labelsAmount = StarMgr.getLabelsAmount();\ncore.debug(\"Star labels amount: \" + labelsAmount);"
+    },
+    {
+        "name": "setLabelsAmount",
+        "category": "Stars Manager - Core",
+        "signature": "setLabelsAmount(double amount)",
+        "description": "Sets the amount of star labels displayed. 0 = no labels, 10 = maximum labels (shows labels for faintest stars).",
+        "parameters": [
+            {
+                "name": "amount",
+                "type": "double",
+                "description": "Labels amount (0.0 to 10.0, default: 3.0)",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show only bright stars\nStarMgr.setLabelsAmount(2.0);\n\n// Show many star labels\nStarMgr.setLabelsAmount(7.0);"
+    },
+    {
+        "name": "getFlagSciNames",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagSciNames()",
+        "description": "Returns whether scientific star names (Bayer/Flamsteed designations) are displayed for stars without common names.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if scientific names are shown",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagSciNames()) {\n    core.debug(\"Scientific star names are shown\");\n}"
+    },
+    {
+        "name": "setFlagSciNames",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagSciNames(bool show)",
+        "description": "Sets whether scientific star names (Bayer/Flamsteed designations) are displayed for stars without common names.",
+        "parameters": [
+            {
+                "name": "show",
+                "type": "bool",
+                "description": "true to show scientific names",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show scientific names (Bayer/Flamsteed)\nStarMgr.setFlagSciNames(true);\n\n// Show only common names\nStarMgr.setFlagSciNames(false);"
+    },
+    {
+        "name": "getFlagAdditionalNames",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagAdditionalNames()",
+        "description": "Returns whether additional star names (aliases) are displayed in the information panel.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if additional names are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagAdditionalNames()) {\n    core.debug(\"Additional star names are shown\");\n}"
+    },
+    {
+        "name": "setFlagAdditionalNames",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagAdditionalNames(bool show)",
+        "description": "Shows or hides additional star names (aliases) in the information panel.",
+        "parameters": [
+            {
+                "name": "show",
+                "type": "bool",
+                "description": "true to show additional names",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show all star name aliases\nStarMgr.setFlagAdditionalNames(true);\n\n// Show only primary names\nStarMgr.setFlagAdditionalNames(false);"
+    },
+    {
+        "name": "getDesignationUsage",
+        "category": "Stars Manager - Core",
+        "signature": "bool getDesignationUsage()",
+        "description": "Returns whether catalog designations are used instead of common names for star labels.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if designations are preferred over common names",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getDesignationUsage()) {\n    core.debug(\"Catalog designations are shown instead of common names\");\n}"
+    },
+    {
+        "name": "setDesignationUsage",
+        "category": "Stars Manager - Core",
+        "signature": "setDesignationUsage(bool useDesignations)",
+        "description": "Sets whether catalog designations should be used instead of common names for star labels.",
+        "parameters": [
+            {
+                "name": "useDesignations",
+                "type": "bool",
+                "description": "true to use catalog designations",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Use HIP numbers for labels\nStarMgr.setDesignationUsage(true);\n\n// Use common names\nStarMgr.setDesignationUsage(false);"
+    },
+    {
+        "name": "getFlagDblStarsDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagDblStarsDesignation()",
+        "description": "Returns whether traditional designations for double stars are displayed.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if double star designations are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagDblStarsDesignation()) {\n    core.debug(\"Double star designations are shown\");\n}"
+    },
+    {
+        "name": "setFlagDblStarsDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagDblStarsDesignation(bool show)",
+        "description": "Shows or hides traditional designations for double stars (e.g., 'α1 Cen', 'ε1 Lyr').",
+        "parameters": [
+            {
+                "name": "show",
+                "type": "bool",
+                "description": "true to show double star designations",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show double star component designations\nStarMgr.setFlagDblStarsDesignation(true);\n\n// Hide component designations\nStarMgr.setFlagDblStarsDesignation(false);"
+    },
+    {
+        "name": "getFlagVarStarsDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagVarStarsDesignation()",
+        "description": "Returns whether variable star designations (GCVS names) are displayed.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if variable star designations are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagVarStarsDesignation()) {\n    core.debug(\"Variable star designations are shown\");\n}"
+    },
+    {
+        "name": "setFlagVarStarsDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagVarStarsDesignation(bool show)",
+        "description": "Shows or hides variable star designations (GCVS names like 'RR Lyr', 'δ Cep').",
+        "parameters": [
+            {
+                "name": "show",
+                "type": "bool",
+                "description": "true to show variable star designations",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show variable star names\nStarMgr.setFlagVarStarsDesignation(true);\n\n// Hide variable star designations\nStarMgr.setFlagVarStarsDesignation(false);"
+    },
+    {
+        "name": "getFlagHIPDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "bool getFlagHIPDesignation()",
+        "description": "Returns whether Hipparcos catalog numbers are displayed for stars.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if HIP numbers are shown",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "if(StarMgr.getFlagHIPDesignation()) {\n    core.debug(\"HIP numbers are shown\");\n}"
+    },
+    {
+        "name": "setFlagHIPDesignation",
+        "category": "Stars Manager - Core",
+        "signature": "setFlagHIPDesignation(bool show)",
+        "description": "Shows or hides Hipparcos catalog numbers for stars.",
+        "parameters": [
+            {
+                "name": "show",
+                "type": "bool",
+                "description": "true to show HIP numbers",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show HIP numbers\nStarMgr.setFlagHIPDesignation(true);\n\n// Hide HIP numbers\nStarMgr.setFlagHIPDesignation(false);"
+    },
+    {
+        "name": "increaseStarsMagnitudeLimit",
+        "category": "Stars Manager - Core",
+        "signature": "increaseStarsMagnitudeLimit()",
+        "description": "Increases the custom star magnitude limit by 0.1 magnitude, showing fainter stars.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show fainter stars\nStarMgr.increaseStarsMagnitudeLimit();\n\n// Repeat to show even fainter stars\nfor(var i=0; i<5; i++) {\n    StarMgr.increaseStarsMagnitudeLimit();\n    core.wait(0.5);\n}"
+    },
+    {
+        "name": "reduceStarsMagnitudeLimit",
+        "category": "Stars Manager - Core",
+        "signature": "reduceStarsMagnitudeLimit()",
+        "description": "Reduces the custom star magnitude limit by 0.1 magnitude, showing only brighter stars.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Show only brighter stars\nStarMgr.reduceStarsMagnitudeLimit();"
+    },
+		    {
+        "name": "searchHP",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchHP(int hipNumber)",
+        "description": "Searches for a star by its Hipparcos catalog number.",
+        "parameters": [
+            {
+                "name": "hipNumber",
+                "type": "int",
+                "description": "Hipparcos catalog number (e.g., 32349 for Sirius)",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchHP(32349);\nif(sirius) {\n    core.debug(\"Found Sirius\");\n    core.moveToObject(sirius.getEnglishName(), 2);\n}"
+    },
+    {
+        "name": "searchGaia",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchGaia(StarId sourceId)",
+        "description": "Searches for a star by its Gaia DR3 source ID.",
+        "parameters": [
+            {
+                "name": "sourceId",
+                "type": "StarId",
+                "description": "Gaia DR3 source ID",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.19.0",
+            "notes": "Requires Gaia catalog data"
+        },
+        "example": "var star = StarMgr.searchGaia(1679274403719601152);\nif(star) {\n    core.debug(\"Found Gaia star\");\n}"
+    },
+    {
+        "name": "searchByID",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByID(QString id)",
+        "description": "Searches for a star by its identifier (HIP, SAO, HD, HR, GCVS, WDS, or common name).",
+        "parameters": [
+            {
+                "name": "id",
+                "type": "QString",
+                "description": "Star identifier (e.g., 'HIP 32349', 'SAO 151881', 'Sirius')",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var star = StarMgr.searchByID(\"HIP 32349\");\nstar = StarMgr.searchByID(\"SAO 151881\");\nstar = StarMgr.searchByID(\"HD 48915\");"
+    },
+    {
+        "name": "searchByNameI18n",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByNameI18n(QString name)",
+        "description": "Searches for a star by its translated (localized) name.",
+        "parameters": [
+            {
+                "name": "name",
+                "type": "QString",
+                "description": "Translated star name",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchByNameI18n(StarMgr.getCommonNameI18n(32349));"
+    },
+    {
+        "name": "searchByName",
+        "category": "Stars Manager - Search",
+        "signature": "StelObjectP searchByName(QString name)",
+        "description": "Searches for a star by its English name or catalog number.",
+        "parameters": [
+            {
+                "name": "name",
+                "type": "QString",
+                "description": "English star name or catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "StelObjectP",
+        "returnDescription": "Star object, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var betelgeuse = StarMgr.searchByName(\"Betelgeuse\");\nvar polaris = StarMgr.searchByName(\"Polaris\");"
+    },
+		    {
+        "name": "getCommonEnglishName",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCommonEnglishName(StarId hip)",
+        "description": "Returns the English common name for a star by its Hipparcos or Gaia catalog number (e.g., 'Sirius', 'Betelgeuse').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "English common name, or empty string if none",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sirius = StarMgr.searchHP(32349);\nif(sirius) {\n    var name = StarMgr.getCommonEnglishName(32349);\n    core.debug(\"Sirius common name: \" + name);\n}"
+    },
+    {
+        "name": "getCommonNameI18n",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCommonNameI18n(StarId hip)",
+        "description": "Returns the translated common name for a star by its Hipparcos or Gaia catalog number.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Translated common name",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var translatedName = StarMgr.getCommonNameI18n(32349);\ncore.debug(\"Sirius in current language: \" + translatedName);"
+    },
+    {
+        "name": "getCulturalNames",
+        "category": "Stars Manager - Names",
+        "signature": "QList<StelObject::CulturalName> getCulturalNames(StarId hip)",
+        "description": "Returns the cultural names for a star (native names from different sky cultures).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QList<StelObject::CulturalName>",
+        "returnDescription": "List of cultural name objects",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var culturalNames = StarMgr.getCulturalNames(32349);\nfor(var i=0; i<culturalNames.length; i++) {\n    core.debug(\"Native: \" + culturalNames[i].native);\n    core.debug(\"Pronounce: \" + culturalNames[i].pronounce);\n}"
+    },
+    {
+        "name": "getCulturalScreenLabel",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCulturalScreenLabel(StarId hip)",
+        "description": "Returns the screen label for a star based on the current sky culture settings (short format).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Screen label for the star",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var screenLabel = StarMgr.getCulturalScreenLabel(32349);\ncore.debug(\"Star label: \" + screenLabel);"
+    },
+    {
+        "name": "getCulturalInfoLabel",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCulturalInfoLabel(StarId hip)",
+        "description": "Returns the information label for a star based on the current sky culture settings (long format for info panel).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Information label for the star",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var infoLabel = StarMgr.getCulturalInfoLabel(32349);\ncore.debug(\"Star info: \" + infoLabel);"
+    },
+    {
+        "name": "getSciDesignation",
+        "category": "Stars Manager - Names",
+        "signature": "QString getSciDesignation(StarId hip)",
+        "description": "Returns the scientific designation (Bayer/Flamsteed name) for a star (e.g., 'α CMa', '21 Tau').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Scientific designation",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sciName = StarMgr.getSciDesignation(32349);\ncore.debug(\"Sirius scientific name: \" + sciName); // 'α CMa'"
+    },
+    {
+        "name": "getSciExtraDesignation",
+        "category": "Stars Manager - Names",
+        "signature": "QString getSciExtraDesignation(StarId hip)",
+        "description": "Returns additional scientific designations for a star (e.g., double star or variable star designations).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Additional scientific designations",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var extraName = StarMgr.getSciExtraDesignation(32349);\ncore.debug(\"Extra designations: \" + extraName);"
+    },
+    {
+        "name": "getCrossIdentificationDesignations",
+        "category": "Stars Manager - Names",
+        "signature": "QString getCrossIdentificationDesignations(QString hip)",
+        "description": "Returns cross-identification designations (SAO, HD, HR numbers) for a star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "QString",
+                "description": "Hipparcos number (may include component letter)",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Cross-identification designations",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var crossIds = StarMgr.getCrossIdentificationDesignations(\"32349\");\ncore.debug(\"Cross IDs: \" + crossIds); // 'HR 2491 - HD 48915'"
+    },
+    {
+        "name": "convertToSpectralType",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToSpectralType(int index)",
+        "description": "Converts a spectral type index to a human-readable spectral type string (e.g., 'G2V', 'M5III').",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Spectral type index from star catalog",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Spectral type string",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var star = StarMgr.searchHP(32349);\nvar specIndex = star.getSpInt();\nvar specType = StarMgr.convertToSpectralType(specIndex);\ncore.debug(\"Spectral type: \" + specType);"
+    },
+    {
+        "name": "convertToComponentIds",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToComponentIds(int index)",
+        "description": "Converts a component index to a letter suffix (A, B, C, etc.) for double star components.",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Component index (0 = no suffix, 1 = 'A', 2 = 'B', etc.)",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Component letter or empty string",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var component = StarMgr.convertToComponentIds(1);\ncore.debug(\"Component: \" + component); // 'A'"
+    },
+    {
+        "name": "convertToOjectTypes",
+        "category": "Stars Manager - Names",
+        "signature": "QString convertToOjectTypes(int index)",
+        "description": "Converts an object type index to a human-readable object type description.",
+        "parameters": [
+            {
+                "name": "index",
+                "type": "int",
+                "description": "Object type index from star catalog",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Object type description",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var objType = StarMgr.convertToOjectTypes(someIndex);\ncore.debug(\"Object type: \" + objType);"
+    },
+		    {
+        "name": "getHipparcosStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosStars()",
+        "description": "Returns a list of all Hipparcos stars loaded in Stellarium.",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of Hipparcos star objects",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var hipparcosList = StarMgr.getHipparcosStars();\ncore.debug(\"Number of Hipparcos stars: \" + hipparcosList.length);"
+    },
+    {
+        "name": "getHipparcosDoubleStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosDoubleStars()",
+        "description": "Returns a list of Hipparcos double stars with their separations.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of double star objects with separations",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var doubleStars = StarMgr.getHipparcosDoubleStars();\nfor(var i=0; i<doubleStars.length; i++) {\n    var star = doubleStars[i].first;\n    var sep = doubleStars[i].second;\n    core.debug(star.getEnglishName() + \" separation: \" + sep + \" arcsec\");\n}"
+    },
+    {
+        "name": "getHipparcosVariableStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosVariableStars()",
+        "description": "Returns a list of Hipparcos variable stars with their periods.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of variable star objects with periods",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var variables = StarMgr.getHipparcosVariableStars();\nfor(var i=0; i<variables.length; i++) {\n    var star = variables[i].first;\n    var period = variables[i].second;\n    core.debug(star.getEnglishName() + \" period: \" + period + \" days\");\n}"
+    },
+    {
+        "name": "getHipparcosAlgolTypeStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosAlgolTypeStars()",
+        "description": "Returns a list of Algol-type eclipsing binary stars.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of Algol-type stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var algolStars = StarMgr.getHipparcosAlgolTypeStars();\ncore.debug(\"Number of Algol-type stars: \" + algolStars.length);"
+    },
+    {
+        "name": "getHipparcosClassicalCepheidsTypeStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosClassicalCepheidsTypeStars()",
+        "description": "Returns a list of classical Cepheid variable stars.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of Cepheid stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var cepheids = StarMgr.getHipparcosClassicalCepheidsTypeStars();\nif(cepheids.length > 0) {\n    core.debug(\"First Cepheid: \" + cepheids[0].first.getEnglishName());\n}"
+    },
+    {
+        "name": "getHipparcosCarbonStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosCarbonStars()",
+        "description": "Returns a list of carbon stars (red giants with carbon-rich atmospheres).",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of carbon stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var carbonStars = StarMgr.getHipparcosCarbonStars();\nfor(var i=0; i<carbonStars.length; i++) {\n    core.debug(carbonStars[i].getEnglishName() + \" is a carbon star\");\n}"
+    },
+    {
+        "name": "getHipparcosBariumStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosBariumStars()",
+        "description": "Returns a list of barium stars (G/K giants with enhanced barium).",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of barium stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var bariumStars = StarMgr.getHipparcosBariumStars();\ncore.debug(\"Barium stars count: \" + bariumStars.length);"
+    },
+    {
+        "name": "getHipparcosHighPMStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosHighPMStars()",
+        "description": "Returns a list of stars with high proper motion (>1000 mas/year).",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of high proper motion stars with velocities",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var highPM = StarMgr.getHipparcosHighPMStars();\ncore.debug(\"High proper motion stars: \" + highPM.length);\nfor(var i=0; i<Math.min(5, highPM.length); i++) {\n    core.debug(highPM[i].first.getEnglishName() + \" velocity: \" + highPM[i].second + \" arcsec/year\");\n}"
+    },
+    {
+        "name": "getCatalogsDescription",
+        "category": "Stars Manager - Lists",
+        "signature": "QVariantList getCatalogsDescription()",
+        "description": "Returns the list of star catalog descriptions (file names, checksums, enabled status).",
+        "parameters": [],
+        "returnType": "QVariantList",
+        "returnDescription": "List of catalog descriptions",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "For debugging and catalog management"
+        },
+        "example": "var catalogs = StarMgr.getCatalogsDescription();\nfor(var i=0; i<catalogs.length; i++) {\n    core.debug(\"Catalog \" + i + \": \" + JSON.stringify(catalogs[i]));\n}"
+    },
+    {
+        "name": "getStelObjectType",
+        "category": "Stars Manager - Lists",
+        "signature": "QString getStelObjectType()",
+        "description": "Returns the object type string for stars ('Star').",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Object type identifier",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var objType = StarMgr.getStelObjectType();\ncore.debug(\"Object type: \" + objType); // 'Star'"
+    },
+    {
+        "name": "getName",
+        "category": "Stars Manager - Lists",
+        "signature": "QString getName()",
+        "description": "Returns the display name of the Star Manager module.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Module name ('Stars')",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var moduleName = StarMgr.getName();\ncore.debug(\"Module: \" + moduleName); // 'Stars'"
+    },
+		    {
+        "name": "getGcvsDesignation",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsDesignation(StarId hip)",
+        "description": "Returns the GCVS (General Catalogue of Variable Stars) designation for a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "GCVS designation (e.g., 'RR Lyr', 'δ Cep')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var gcvs = StarMgr.getGcvsDesignation(95497);\ncore.debug(\"Variable star designation: \" + gcvs); // 'RR Lyr'"
+    },
+    {
+        "name": "getGcvsVariabilityType",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsVariabilityType(StarId hip)",
+        "description": "Returns the variability type of a variable star (e.g., 'RRAB', 'DCEP', 'EA').",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Variability type code",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var varType = StarMgr.getGcvsVariabilityType(95497);\ncore.debug(\"Variability type: \" + varType);"
+    },
+    {
+        "name": "getGcvsMaxMagnitude",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getGcvsMaxMagnitude(StarId hip)",
+        "description": "Returns the maximum magnitude (brightest) of a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Maximum magnitude",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var maxMag = StarMgr.getGcvsMaxMagnitude(95497);\ncore.debug(\"RR Lyr max magnitude: \" + maxMag);"
+    },
+    {
+        "name": "getGcvsMinMagnitude",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getGcvsMinMagnitude(StarId hip, bool firstMinimumFlag)",
+        "description": "Returns the minimum magnitude (faintest) of a variable star. For Algol-type stars, can get first or second minimum.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            },
+            {
+                "name": "firstMinimumFlag",
+                "type": "bool",
+                "description": "If true, returns first minimum; if false, returns second minimum",
+                "required": false,
+                "default": "true"
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Minimum magnitude",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var minMag = StarMgr.getGcvsMinMagnitude(95497);\ncore.debug(\"RR Lyr min magnitude: \" + minMag);"
+    },
+    {
+        "name": "getGcvsPeriod",
+        "category": "Stars Manager - Star Data",
+        "signature": "double getGcvsPeriod(StarId hip)",
+        "description": "Returns the period of a variable star in days.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "double",
+        "returnDescription": "Period in days",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var period = StarMgr.getGcvsPeriod(95497);\ncore.debug(\"RR Lyr period: \" + period + \" days\");"
+    },
+    {
+        "name": "getGcvsEpoch",
+        "category": "Stars Manager - Star Data",
+        "signature": "double getGcvsEpoch(StarId hip)",
+        "description": "Returns the epoch for maximum light of a variable star in Julian Days.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "double",
+        "returnDescription": "Epoch in Julian Days",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var epoch = StarMgr.getGcvsEpoch(95497);\ncore.debug(\"Maximum light epoch: \" + epoch);"
+    },
+    {
+        "name": "getGcvsPhotometricSystem",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsPhotometricSystem(StarId hip)",
+        "description": "Returns the photometric system used for magnitude measurements of a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Photometric system (e.g., 'V', 'B', 'p')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var photosys = StarMgr.getGcvsPhotometricSystem(95497);\ncore.debug(\"Photometric system: \" + photosys);"
+    },
+    {
+        "name": "getGcvsSpectralType",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getGcvsSpectralType(StarId hip)",
+        "description": "Returns the spectral type of a variable star from GCVS data.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "Spectral type",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var spec = StarMgr.getGcvsSpectralType(95497);\ncore.debug(\"Spectral type: \" + spec);"
+    },
+    {
+        "name": "getGcvsMagnitudeFlag",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getGcvsMagnitudeFlag(StarId hip)",
+        "description": "Returns the magnitude flag code for a variable star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Magnitude flag code",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var flag = StarMgr.getGcvsMagnitudeFlag(95497);\ncore.debug(\"Magnitude flag: \" + flag);"
+    },
+    {
+        "name": "getGcvsMM",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getGcvsMM(StarId hip)",
+        "description": "Returns the rising time or duration of eclipse for a variable star in percent.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Eclipse duration in percent",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var mm = StarMgr.getGcvsMM(14576); // Algol\ncore.debug(\"Eclipse duration: \" + mm + \"%\");"
+    },
+    {
+        "name": "getWdsDesignation",
+        "category": "Stars Manager - Star Data",
+        "signature": "QString getWdsDesignation(StarId hip)",
+        "description": "Returns the Washington Double Star (WDS) catalog designation for a double star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "QString",
+        "returnDescription": "WDS designation (e.g., 'WDS J12345+6789')",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var wds = StarMgr.getWdsDesignation(95947); // Albireo\ncore.debug(\"WDS designation: \" + wds);"
+    },
+    {
+        "name": "getWdsLastObservation",
+        "category": "Stars Manager - Star Data",
+        "signature": "int getWdsLastObservation(StarId hip)",
+        "description": "Returns the year of the last satisfactory observation of a double star.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "int",
+        "returnDescription": "Year of last observation",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var lastObs = StarMgr.getWdsLastObservation(95947);\ncore.debug(\"Last observation: \" + lastObs);"
+    },
+    {
+        "name": "getWdsLastPositionAngle",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getWdsLastPositionAngle(StarId hip)",
+        "description": "Returns the position angle (in degrees) of a double star at the last observation.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Position angle in degrees",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var pa = StarMgr.getWdsLastPositionAngle(95947);\ncore.debug(\"Position angle: \" + pa + \"°\");"
+    },
+    {
+        "name": "getWdsLastSeparation",
+        "category": "Stars Manager - Star Data",
+        "signature": "float getWdsLastSeparation(StarId hip)",
+        "description": "Returns the separation (in arcseconds) of a double star at the last observation.",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "float",
+        "returnDescription": "Separation in arcseconds",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var sep = StarMgr.getWdsLastSeparation(95947);\ncore.debug(\"Separation: \" + sep + \" arcsec\");"
+    },
+    {
+        "name": "getBinaryOrbitData",
+        "category": "Stars Manager - Star Data",
+        "signature": "binaryorbitstar getBinaryOrbitData(StarId hip)",
+        "description": "Returns binary orbit parameters for a binary star system (period, eccentricity, inclination, masses, etc.).",
+        "parameters": [
+            {
+                "name": "hip",
+                "type": "StarId",
+                "description": "Hipparcos or Gaia catalog number",
+                "required": true
+            }
+        ],
+        "returnType": "binaryorbitstar",
+        "returnDescription": "Binary orbit data structure",
+        "type": "static method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var orbit = StarMgr.getBinaryOrbitData(95947);\nif(orbit.hip) {\n    core.debug(\"Period: \" + orbit.binary_period + \" days\");\n    core.debug(\"Eccentricity: \" + orbit.eccentricity);\n    core.debug(\"Primary mass: \" + orbit.primary_mass + \" M☉\");\n}"
+    }
+]

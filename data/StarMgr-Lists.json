@@ -1,0 +1,189 @@
+[
+    {
+        "name": "getHipparcosStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosStars()",
+        "description": "Returns a list of all Hipparcos stars loaded in Stellarium.",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of Hipparcos star objects",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var hipparcosList = StarMgr.getHipparcosStars();\ncore.debug(\"Number of Hipparcos stars: \" + hipparcosList.length);"
+    },
+    {
+        "name": "getHipparcosDoubleStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosDoubleStars()",
+        "description": "Returns a list of Hipparcos double stars with their separations.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of double star objects with separations",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var doubleStars = StarMgr.getHipparcosDoubleStars();\nfor(var i=0; i<doubleStars.length; i++) {\n    var star = doubleStars[i].first;\n    var sep = doubleStars[i].second;\n    core.debug(star.getEnglishName() + \" separation: \" + sep + \" arcsec\");\n}"
+    },
+    {
+        "name": "getHipparcosVariableStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosVariableStars()",
+        "description": "Returns a list of Hipparcos variable stars with their periods.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of variable star objects with periods",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var variables = StarMgr.getHipparcosVariableStars();\nfor(var i=0; i<variables.length; i++) {\n    var star = variables[i].first;\n    var period = variables[i].second;\n    core.debug(star.getEnglishName() + \" period: \" + period + \" days\");\n}"
+    },
+    {
+        "name": "getHipparcosAlgolTypeStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosAlgolTypeStars()",
+        "description": "Returns a list of Algol-type eclipsing binary stars.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of Algol-type stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var algolStars = StarMgr.getHipparcosAlgolTypeStars();\ncore.debug(\"Number of Algol-type stars: \" + algolStars.length);"
+    },
+    {
+        "name": "getHipparcosClassicalCepheidsTypeStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosClassicalCepheidsTypeStars()",
+        "description": "Returns a list of classical Cepheid variable stars.",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of Cepheid stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var cepheids = StarMgr.getHipparcosClassicalCepheidsTypeStars();\nif(cepheids.length > 0) {\n    core.debug(\"First Cepheid: \" + cepheids[0].first.getEnglishName());\n}"
+    },
+    {
+        "name": "getHipparcosCarbonStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosCarbonStars()",
+        "description": "Returns a list of carbon stars (red giants with carbon-rich atmospheres).",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of carbon stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var carbonStars = StarMgr.getHipparcosCarbonStars();\nfor(var i=0; i<carbonStars.length; i++) {\n    core.debug(carbonStars[i].getEnglishName() + \" is a carbon star\");\n}"
+    },
+    {
+        "name": "getHipparcosBariumStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<StelObjectP> getHipparcosBariumStars()",
+        "description": "Returns a list of barium stars (G/K giants with enhanced barium).",
+        "parameters": [],
+        "returnType": "const QList<StelObjectP>",
+        "returnDescription": "List of barium stars",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var bariumStars = StarMgr.getHipparcosBariumStars();\ncore.debug(\"Barium stars count: \" + bariumStars.length);"
+    },
+    {
+        "name": "getHipparcosHighPMStars",
+        "category": "Stars Manager - Lists",
+        "signature": "const QList<QPair<StelObjectP, float>> getHipparcosHighPMStars()",
+        "description": "Returns a list of stars with high proper motion (>1000 mas/year).",
+        "parameters": [],
+        "returnType": "const QList<QPair<StelObjectP, float>>",
+        "returnDescription": "List of high proper motion stars with velocities",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.14.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var highPM = StarMgr.getHipparcosHighPMStars();\ncore.debug(\"High proper motion stars: \" + highPM.length);\nfor(var i=0; i<Math.min(5, highPM.length); i++) {\n    core.debug(highPM[i].first.getEnglishName() + \" velocity: \" + highPM[i].second + \" arcsec/year\");\n}"
+    },
+    {
+        "name": "getCatalogsDescription",
+        "category": "Stars Manager - Lists",
+        "signature": "QVariantList getCatalogsDescription()",
+        "description": "Returns the list of star catalog descriptions (file names, checksums, enabled status).",
+        "parameters": [],
+        "returnType": "QVariantList",
+        "returnDescription": "List of catalog descriptions",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "For debugging and catalog management"
+        },
+        "example": "var catalogs = StarMgr.getCatalogsDescription();\nfor(var i=0; i<catalogs.length; i++) {\n    core.debug(\"Catalog \" + i + \": \" + JSON.stringify(catalogs[i]));\n}"
+    },
+    {
+        "name": "getStelObjectType",
+        "category": "Stars Manager - Lists",
+        "signature": "QString getStelObjectType()",
+        "description": "Returns the object type string for stars ('Star').",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Object type identifier",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var objType = StarMgr.getStelObjectType();\ncore.debug(\"Object type: \" + objType); // 'Star'"
+    },
+    {
+        "name": "getName",
+        "category": "Stars Manager - Lists",
+        "signature": "QString getName()",
+        "description": "Returns the display name of the Star Manager module.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Module name ('Stars')",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.10.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var moduleName = StarMgr.getName();\ncore.debug(\"Module: \" + moduleName); // 'Stars'"
+    }
+]

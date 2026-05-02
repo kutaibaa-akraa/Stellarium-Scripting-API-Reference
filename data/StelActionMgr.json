@@ -1,0 +1,666 @@
+[
+    {
+        "name": "addAction",
+        "category": "Actions Manager - Registration",
+        "signature": "StelAction* addAction(QString id, QString groupId, QString text, QObject target, const char* slot, QString shortcut, QString altShortcut, bool global)",
+        "description": "Creates and registers a new StelAction connected to an object property or slot. The action can be triggered via shortcuts, buttons, or scripting, and automatically appears in the hotkey configuration dialog.",
+        "parameters": [
+            {
+                "name": "id",
+                "type": "QString",
+                "description": "Unique global identifier for the action (e.g., 'actionShow_Planets')",
+                "required": true
+            },
+            {
+                "name": "groupId",
+                "type": "QString",
+                "description": "Group identifier for organizing actions in UI (e.g., 'Display Options')",
+                "required": true
+            },
+            {
+                "name": "text",
+                "type": "QString",
+                "description": "Short human-readable description in English (will be translated automatically)",
+                "required": true
+            },
+            {
+                "name": "target",
+                "type": "QObject",
+                "description": "The QObject the action is linked to (usually a module manager like SolarSystem or LandscapeMgr)",
+                "required": true
+            },
+            {
+                "name": "slot",
+                "type": "const char*",
+                "description": "Slot name (e.g., 'setFlagPlanets(bool)') or property name. Use 'func()' for non-checkable actions, 'func(bool)' or property name for checkable actions",
+                "required": true
+            },
+            {
+                "name": "shortcut",
+                "type": "QString",
+                "description": "Default shortcut/key combination (e.g., 'P', 'Ctrl+S', 'Shift+F5')",
+                "required": false,
+                "default": "\"\""
+            },
+            {
+                "name": "altShortcut",
+                "type": "QString",
+                "description": "Alternative shortcut/key combination",
+                "required": false,
+                "default": "\"\""
+            },
+            {
+                "name": "global",
+                "type": "bool",
+                "description": "If true, action works even when the main view doesn't have focus",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "StelAction*",
+        "returnDescription": "Pointer to the created StelAction object",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Add a toggle action for planets display\nStelActionMgr.addAction(\"actionShow_Planets\", \"Display Options\", \"Planets\", SolarSystem, \"setFlagPlanets(bool)\", \"P\");\n\n// Add an action without shortcut\nStelActionMgr.addAction(\"actionReload_Data\", \"Tools\", \"Reload Solar System Data\", SolarSystem, \"reloadPlanets()\");\n\n// Add a global action (works even when Stellarium is not focused)\nStelActionMgr.addAction(\"actionCapture_Screen\", \"Tools\", \"Take Screenshot\", core, \"screenshot()\", \"Ctrl+S\", \"\", true);"
+    },
+    {
+        "name": "addAction",
+        "category": "Actions Manager - Registration",
+        "signature": "StelAction* addAction(QString id, QString groupId, QString text, QObject context, std::function<void()> lambda, QString shortcut, QString altShortcut, bool global)",
+        "description": "Creates and registers a new StelAction with a lambda function. The lambda will be executed when the action is triggered. Useful for simple actions that don't require dedicated slots.",
+        "parameters": [
+            {
+                "name": "id",
+                "type": "QString",
+                "description": "Unique global identifier for the action",
+                "required": true
+            },
+            {
+                "name": "groupId",
+                "type": "QString",
+                "description": "Group identifier for organizing actions",
+                "required": true
+            },
+            {
+                "name": "text",
+                "type": "QString",
+                "description": "Short human-readable description",
+                "required": true
+            },
+            {
+                "name": "context",
+                "type": "QObject",
+                "description": "Context object for the lambda; when deleted, the lambda won't be called",
+                "required": true
+            },
+            {
+                "name": "lambda",
+                "type": "std::function<void()>",
+                "description": "Lambda function to execute when the action is triggered",
+                "required": true
+            },
+            {
+                "name": "shortcut",
+                "type": "QString",
+                "description": "Default shortcut/key combination",
+                "required": false,
+                "default": "\"\""
+            },
+            {
+                "name": "altShortcut",
+                "type": "QString",
+                "description": "Alternative shortcut",
+                "required": false,
+                "default": "\"\""
+            },
+            {
+                "name": "global",
+                "type": "bool",
+                "description": "If true, action works even without focus",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "StelAction*",
+        "returnDescription": "Pointer to the created StelAction object",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.15.0",
+            "notes": "Requires C++11 or later for lambda support"
+        },
+        "example": "// Add action with lambda\nStelActionMgr.addAction(\"actionCustom_Message\", \"Tools\", \"Show Welcome Message\", core, [=]() {\n    core.debug(\"Welcome to Stellarium!\");\n}, \"Ctrl+W\");\n\n// Add action to increase star magnitude\nStelActionMgr.addAction(\"actionIncrease_Stars\", \"Display Options\", \"Increase Star Limit\", core, [=]() {\n    StarMgr.increaseStarsMagnitudeLimit();\n}, \"Ctrl+Up\");"
+    },
+    {
+        "name": "findAction",
+        "category": "Actions Manager - Query",
+        "signature": "StelAction* findAction(QString id)",
+        "description": "Finds and returns a registered StelAction by its unique identifier.",
+        "parameters": [
+            {
+                "name": "id",
+                "type": "QString",
+                "description": "Action identifier (e.g., 'actionShow_Planets')",
+                "required": true
+            }
+        ],
+        "returnType": "StelAction*",
+        "returnDescription": "Pointer to StelAction, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nif(action) {\n    core.debug(\"Action found: \" + action.getId());\n    // Trigger the action\n    action.trigger();\n}"
+    },
+    {
+        "name": "findActionFromShortcut",
+        "category": "Actions Manager - Query",
+        "signature": "StelAction* findActionFromShortcut(QString shortcut)",
+        "description": "Finds and returns a StelAction associated with a specific keyboard shortcut. Returns the first matching action if found.",
+        "parameters": [
+            {
+                "name": "shortcut",
+                "type": "QString",
+                "description": "Keyboard shortcut string (e.g., 'P', 'Ctrl+S')",
+                "required": true
+            }
+        ],
+        "returnType": "StelAction*",
+        "returnDescription": "Pointer to StelAction, or null if not found",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findActionFromShortcut(\"P\");\nif(action) {\n    core.debug(\"Action with shortcut P: \" + action.getId());\n}"
+    },
+    {
+        "name": "pushKey",
+        "category": "Actions Manager - Input",
+        "signature": "bool pushKey(int key, bool global)",
+        "description": "Processes a key press to trigger matching actions. Used internally by Stellarium's input handling system. Returns true if an action was triggered.",
+        "parameters": [
+            {
+                "name": "key",
+                "type": "int",
+                "description": "Qt key code for the pressed key (e.g., Qt.Key_P)",
+                "required": true
+            },
+            {
+                "name": "global",
+                "type": "bool",
+                "description": "If true, only consider global actions",
+                "required": false,
+                "default": "false"
+            }
+        ],
+        "returnType": "bool",
+        "returnDescription": "true if an action was triggered, false otherwise",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Internal use, but can be called from scripts for simulation"
+        },
+        "example": "// Simulate pressing 'P' key (show planets)\nStelActionMgr.pushKey(80); // 80 is ASCII for 'P'"
+    },
+    {
+        "name": "getGroupList",
+        "category": "Actions Manager - Query",
+        "signature": "QStringList getGroupList()",
+        "description": "Returns a list of all action group identifiers. Groups are used to organize actions in UI like the Shortcuts Dialog.",
+        "parameters": [],
+        "returnType": "QStringList",
+        "returnDescription": "List of group IDs",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var groups = StelActionMgr.getGroupList();\ncore.debug(\"Action groups: \" + groups.length);\nfor(var i=0; i<groups.length; i++) {\n    core.debug((i+1) + \". \" + groups[i]);\n}"
+    },
+    {
+        "name": "getActionList",
+        "category": "Actions Manager - Query",
+        "signature": "QList<StelAction*> getActionList(QString group)",
+        "description": "Returns a list of all StelActions belonging to a specific group.",
+        "parameters": [
+            {
+                "name": "group",
+                "type": "QString",
+                "description": "Group identifier (e.g., 'Display Options', 'Tools')",
+                "required": true
+            }
+        ],
+        "returnType": "QList<StelAction*>",
+        "returnDescription": "List of StelAction pointers in the group",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var displayActions = StelActionMgr.getActionList(\"Display Options\");\ncore.debug(\"Display Options actions: \" + displayActions.length);\nfor(var i=0; i<displayActions.length; i++) {\n    core.debug(displayActions[i].getId());\n}"
+    },
+    {
+        "name": "getActionList",
+        "category": "Actions Manager - Query",
+        "signature": "QList<StelAction*> getActionList()",
+        "description": "Returns a list of all registered StelActions.",
+        "parameters": [],
+        "returnType": "QList<StelAction*>",
+        "returnDescription": "List of all StelAction pointers",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var allActions = StelActionMgr.getActionList();\ncore.debug(\"Total actions: \" + allActions.length);"
+    },
+    {
+        "name": "getShortcutsList",
+        "category": "Actions Manager - Query",
+        "signature": "QStringList getShortcutsList()",
+        "description": "Returns a list of all keyboard shortcuts currently assigned to actions.",
+        "parameters": [],
+        "returnType": "QStringList",
+        "returnDescription": "List of shortcut strings",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var shortcuts = StelActionMgr.getShortcutsList();\ncore.debug(\"Defined shortcuts: \" + shortcuts.length);\nfor(var i=0; i<Math.min(10, shortcuts.length); i++) {\n    core.debug(shortcuts[i]);\n}"
+    },
+    {
+        "name": "saveShortcuts",
+        "category": "Actions Manager - Configuration",
+        "signature": "saveShortcuts()",
+        "description": "Saves the current keyboard shortcut assignments to the configuration file (config.ini). Should be called after changing any shortcuts.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Change a shortcut and save\nvar action = StelActionMgr.findAction(\"actionShow_Planets\");\naction.setShortcut(\"Ctrl+Shift+P\");\nStelActionMgr.saveShortcuts();\ncore.debug(\"Shortcuts saved\");"
+    },
+    {
+        "name": "restoreDefaultShortcuts",
+        "category": "Actions Manager - Configuration",
+        "signature": "restoreDefaultShortcuts()",
+        "description": "Restores all keyboard shortcuts to their default values and saves the configuration.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Reset all keyboard shortcuts to defaults\nStelActionMgr.restoreDefaultShortcuts();\ncore.debug(\"All shortcuts restored to defaults\");"
+    },
+    {
+        "name": "restoreDefaultShortcut",
+        "category": "Actions Manager - Configuration",
+        "signature": "restoreDefaultShortcut(StelAction* action)",
+        "description": "Restores a specific action's keyboard shortcuts to their default values and saves the configuration.",
+        "parameters": [
+            {
+                "name": "action",
+                "type": "StelAction*",
+                "description": "Pointer to the StelAction to restore",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nStelActionMgr.restoreDefaultShortcut(action);\ncore.debug(\"Shortcut restored for action\");"
+    },
+    {
+        "name": "setAllActionsEnabled",
+        "category": "Actions Manager - Control",
+        "signature": "setAllActionsEnabled(bool enabled)",
+        "description": "Enables or disables all actions globally. Used during shortcut editing to prevent triggering actions while configuring them.",
+        "parameters": [
+            {
+                "name": "enabled",
+                "type": "bool",
+                "description": "true to enable all actions, false to disable them",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "// Temporarily disable all actions\nStelActionMgr.setAllActionsEnabled(false);\n// ... do something (e.g., edit shortcuts) ...\nStelActionMgr.setAllActionsEnabled(true);"
+    },
+    {
+        "name": "isCheckable",
+        "category": "StelAction - Properties",
+        "signature": "bool isCheckable()",
+        "description": "Returns whether the action is checkable (toggleable). Actions connected to boolean properties or boolean slots are checkable.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if the action can be toggled (checked/unchecked)",
+        "type": "property",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nif(action.isCheckable()) {\n    core.debug(\"Action is toggleable\");\n    core.debug(\"Current state: \" + action.isChecked());\n}"
+    },
+    {
+        "name": "isChecked",
+        "category": "StelAction - Properties",
+        "signature": "bool isChecked()",
+        "description": "Returns the current state of the action (for checkable actions). For non-checkable actions, this will always return false.",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "Current checked state (true = on/checked, false = off/unchecked)",
+        "type": "property",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nif(action.isChecked()) {\n    core.debug(\"Planets are currently visible\");\n} else {\n    core.debug(\"Planets are hidden\");\n}"
+    },
+    {
+        "name": "isGlobal",
+        "category": "StelAction - Properties",
+        "signature": "bool isGlobal()",
+        "description": "Returns whether the action is global (works even when the main Stellarium window doesn't have keyboard focus).",
+        "parameters": [],
+        "returnType": "bool",
+        "returnDescription": "true if the action is global",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionCapture_Screen\");\nif(action.isGlobal()) {\n    core.debug(\"This action works even when Stellarium is not focused\");\n}"
+    },
+    {
+        "name": "setShortcut",
+        "category": "StelAction - Shortcuts",
+        "signature": "setShortcut(QString key)",
+        "description": "Sets the primary keyboard shortcut for this action. The shortcut will be saved when saveShortcuts() is called.",
+        "parameters": [
+            {
+                "name": "key",
+                "type": "QString",
+                "description": "Keyboard shortcut (e.g., 'Ctrl+S', 'Shift+F5', 'P', '')",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\naction.setShortcut(\"Ctrl+Shift+P\");\nStelActionMgr.saveShortcuts();\ncore.debug(\"Shortcut changed to Ctrl+Shift+P\");"
+    },
+    {
+        "name": "setAltShortcut",
+        "category": "StelAction - Shortcuts",
+        "signature": "setAltShortcut(QString key)",
+        "description": "Sets the alternative keyboard shortcut for this action. The shortcut will be saved when saveShortcuts() is called.",
+        "parameters": [
+            {
+                "name": "key",
+                "type": "QString",
+                "description": "Alternative keyboard shortcut (e.g., 'P', 'Ctrl+Alt+S')",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\naction.setAltShortcut(\"P\");\nStelActionMgr.saveShortcuts();"
+    },
+    {
+        "name": "matches",
+        "category": "StelAction - Shortcuts",
+        "signature": "QKeySequence::SequenceMatch matches(QKeySequence sequence)",
+        "description": "Checks how well a key sequence matches this action's shortcuts. Returns NoMatch, PartialMatch, or ExactMatch.",
+        "parameters": [
+            {
+                "name": "sequence",
+                "type": "QKeySequence",
+                "description": "Key sequence to check against",
+                "required": true
+            }
+        ],
+        "returnType": "QKeySequence::SequenceMatch",
+        "returnDescription": "NoMatch, PartialMatch, or ExactMatch",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Internal use for shortcut handling"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\n// Check if 'P' matches\nvar seq = new QKeySequence(\"P\");\nvar match = action.matches(seq);\nif(match == 1) { // ExactMatch\n    core.debug(\"'P' exactly matches this action\");\n}"
+    },
+    {
+        "name": "getId",
+        "category": "StelAction - Properties",
+        "signature": "QString getId()",
+        "description": "Returns the unique identifier of this action.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Action ID string",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\ncore.debug(\"Action ID: \" + action.getId());"
+    },
+    {
+        "name": "getGroup",
+        "category": "StelAction - Properties",
+        "signature": "QString getGroup()",
+        "description": "Returns the group identifier of this action (used for organization in UI).",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Group ID string",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\ncore.debug(\"Action group: \" + action.getGroup());"
+    },
+    {
+        "name": "getShortcut",
+        "category": "StelAction - Properties",
+        "signature": "QKeySequence getShortcut()",
+        "description": "Returns the primary keyboard shortcut for this action.",
+        "parameters": [],
+        "returnType": "QKeySequence",
+        "returnDescription": "Primary shortcut key sequence",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nvar shortcut = action.getShortcut();\ncore.debug(\"Primary shortcut: \" + shortcut.toString());"
+    },
+    {
+        "name": "getAltShortcut",
+        "category": "StelAction - Properties",
+        "signature": "QKeySequence getAltShortcut()",
+        "description": "Returns the alternative keyboard shortcut for this action.",
+        "parameters": [],
+        "returnType": "QKeySequence",
+        "returnDescription": "Alternative shortcut key sequence",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nvar altShortcut = action.getAltShortcut();\nif(!altShortcut.isEmpty()) {\n    core.debug(\"Alternative shortcut: \" + altShortcut.toString());\n}"
+    },
+    {
+        "name": "getText",
+        "category": "StelAction - Properties",
+        "signature": "QString getText()",
+        "description": "Returns the translated (localized) display text for this action.",
+        "parameters": [],
+        "returnType": "QString",
+        "returnDescription": "Translated action text",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\ncore.debug(\"Action label: \" + action.getText());"
+    },
+    {
+        "name": "setText",
+        "category": "StelAction - Properties",
+        "signature": "setText(QString text)",
+        "description": "Sets the display text for this action. The text will be translated automatically.",
+        "parameters": [
+            {
+                "name": "text",
+                "type": "QString",
+                "description": "English text for the action",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "method",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionCustom\");\naction.setText(\"My Custom Action\");"
+    },
+    {
+        "name": "setChecked",
+        "category": "StelAction - Control",
+        "signature": "setChecked(bool value)",
+        "description": "Sets the checked state of a checkable action. For non-checkable actions, this will crash - use isCheckable() first.",
+        "parameters": [
+            {
+                "name": "value",
+                "type": "bool",
+                "description": "true to check/activate, false to uncheck/deactivate",
+                "required": true
+            }
+        ],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Only works for checkable actions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nif(action.isCheckable()) {\n    // Turn on planets\n    action.setChecked(true);\n    core.debug(\"Planets enabled\");\n}"
+    },
+    {
+        "name": "trigger",
+        "category": "StelAction - Control",
+        "signature": "trigger()",
+        "description": "Triggers the action. For checkable actions, this toggles the state; for non-checkable actions, it calls the connected slot.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Works on all Stellarium versions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\n// Trigger the action programmatically\naction.trigger();"
+    },
+    {
+        "name": "toggle",
+        "category": "StelAction - Control",
+        "signature": "toggle()",
+        "description": "Toggles the state of a checkable action (on → off or off → on). For non-checkable actions, this will crash - use isCheckable() first.",
+        "parameters": [],
+        "returnType": "void",
+        "returnDescription": "none",
+        "type": "slot",
+        "compatibility": {
+            "qt5": true,
+            "qt6": true,
+            "minVersion": "0.12.0",
+            "notes": "Only works for checkable actions"
+        },
+        "example": "var action = StelActionMgr.findAction(\"actionShow_Planets\");\nif(action.isCheckable()) {\n    // Toggle planets on/off\n    action.toggle();\n    core.debug(\"Planets toggled, new state: \" + action.isChecked());\n}"
+    }
+]

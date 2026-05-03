@@ -1080,3 +1080,127 @@ body {
 .flex-expand { flex-grow: 1; }
 .gap-8 { gap: 8px; }
 .gap-16 { gap: 16px; }
+
+/* ========================================================================
+ * HELP PANEL - MODULE CARDS
+ * ======================================================================== */
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.module-card {
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    border-left: 3px solid #B4B7B0;
+    transition: all 0.2s ease;
+}
+
+.module-card:hover {
+    background: rgba(0, 0, 0, 0.2);
+    border-left-color: #DCDBDA;
+    transform: translateY(-1px);
+}
+
+.module-card strong {
+    color: #DCDBDA;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+}
+
+.module-card strong i {
+    margin-right: 6px;
+    color: #B4B7B0;
+    width: 18px;
+    text-align: center;
+}
+
+.module-card p {
+    color: #030303;
+    font-size: 0.8em;
+    line-height: 1.4;
+    margin-bottom: 8px;
+}
+
+.module-card pre {
+    font-family: 'DejaVuSansMono', 'Courier New', monospace;
+    font-size: 0.75em;
+    background: #1E1E1E;
+    color: #E8E9EB;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-top: 6px;
+}
+
+/* Plugin Cards - slightly different styling */
+.plugins-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.plugin-card {
+    border-left: 3px solid #6D6F72;
+}
+
+.plugin-card:hover {
+    border-left-color: #B4B7B0;
+}
+
+/* Example Box in Help */
+.example-box {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+    border-left: 3px solid #B4B7B0;
+}
+
+.example-box strong {
+    color: #DCDBDA;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.example-box pre {
+    font-family: 'DejaVuSansMono', 'Courier New', monospace;
+    font-size: 1.0em;
+    background: #1E1E1E;
+    color: #E8E9EB;
+    padding: 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+/* Responsive for help modules */
+@media (max-width: 768px) {
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .plugins-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Help Panel Code styling */
+.help-panel code {
+    font-family: 'DejaVuSansMono', 'Courier New', monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #DCDBDA;
+}
+
+.help-panel p {
+    color: #030303;
+    line-height: 1.5;
+    margin: 8px 0;
+}

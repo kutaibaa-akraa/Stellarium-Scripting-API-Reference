@@ -198,45 +198,335 @@ const Renderer = (function() {
         `;
     }
     
-    /**
-     * Render help tab
-     */
-    function renderHelp() {
-        return `
-            <div class="help-panel">
-                <h3>How to Use This Reference</h3>
-                <div class="help-section">
-                    <h4>Search & Filter</h4>
-                    <ul>
-                        <li>Use the search box to find specific functions by name, description, parameters, or examples</li>
-                        <li>Filter by function type (static/method), return type (void/has return), or parameter count</li>
-                        <li>Filter by Qt compatibility (Qt5, Qt6, or both)</li>
-                        <li>Click on category tags to view only functions from a specific section</li>
-                    </ul>
-                </div>
-                <div class="help-section">
-                    <h4>Favorites & Recent</h4>
-                    <ul>
-                        <li>Click the star icon next to any function name to add it to your favorites</li>
-                        <li>Functions you view are automatically saved to the Recent tab</li>
-                        <li>Favorites and recent history are stored in your browser's local storage</li>
-                    </ul>
-                </div>
-                <div class="help-section">
-                    <h4>Export & Copy</h4>
-                    <ul>
-                        <li>Use Export JSON to download the entire database as a JSON file</li>
-                        <li>Use Export CSV to download function data in CSV format</li>
-                        <li>Click on any function name to copy it to clipboard</li>
-                    </ul>
-                </div>
-                <div class="help-footer">
-                    <p>Stellarium Scripting API Reference | Extracted from Stellarium source files</p>
-                    <p><a href="https://stellarium.org/" target="_blank">stellarium.org</a> | Complete documentation for script developers</p>
+/**
+ * Render help tab with comprehensive module documentation
+ */
+function renderHelp() {
+    return `
+        <div class="help-panel">
+            <h3><i class="fas fa-book"></i> Stellarium Scripting API - Complete Reference</h3>
+            
+            <!-- Introduction Section -->
+            <div class="help-section">
+                <h4><i class="fas fa-info-circle"></i> Introduction</h4>
+                <p>Since version 0.10.1, Stellarium includes a scripting feature based on the Qt Scripting Engine. This makes it possible to write small programs within Stellarium to produce presentations, set up custom configurations, and to automate repetitive tasks.</p>
+                <p>The core scripting language is ECMAScript, giving users access to all basic ECMAScript language features such as flow control, variables, string manipulation, and more. Interaction with Stellarium-specific features is done via a collection of objects which represent components of Stellarium itself.</p>
+            </div>
+            
+            <!-- Core API Access -->
+            <div class="help-section">
+                <h4><i class="fas fa-cube"></i> Core API (StelMainScriptAPI)</h4>
+                <p>The public slots in the class <strong>StelMainScriptAPI</strong> are available via an object named <code>core</code>. This gives access to fundamental Stellarium operations.</p>
+                <div class="example-box">
+                    <strong>Example:</strong>
+                    <pre>core.wait(3);           // Wait for 3 seconds
+core.debug("message");   // Print debug message
+core.clear("natural");   // Clear display</pre>
                 </div>
             </div>
-        `;
-    }
+            
+            <!-- How to Use This Reference -->
+            <div class="help-section">
+                <h4><i class="fas fa-search"></i> Search & Filter</h4>
+                <ul>
+                    <li>Use the search box to find specific functions by <strong>name, description, parameters, or examples</strong></li>
+                    <li>Filter by function type (<strong>static/method</strong>), return type (<strong>void/has return</strong>), or parameter count</li>
+                    <li>Filter by <strong>Qt compatibility</strong> (Qt5, Qt6, or both)</li>
+                    <li>Click on <strong>category tags</strong> to view only functions from a specific section</li>
+                    <li>Use the <strong>Module dropdown</strong> to filter functions by their source module</li>
+                </ul>
+            </div>
+            
+            <div class="help-section">
+                <h4><i class="fas fa-star"></i> Favorites & Recent</h4>
+                <ul>
+                    <li>Click the <i class="fas fa-star" style="color: #D4AF37;"></i> star icon next to any function name to add it to your <strong>favorites</strong></li>
+                    <li>Functions you view are automatically saved to the <strong>Recent tab</strong></li>
+                    <li>Favorites and recent history are stored in your browser's <strong>local storage</strong></li>
+                </ul>
+            </div>
+            
+            <div class="help-section">
+                <h4><i class="fas fa-download"></i> Export & Copy</h4>
+                <ul>
+                    <li>Use <strong>Export JSON</strong> to download the entire database as a JSON file</li>
+                    <li>Use <strong>Export CSV</strong> to download function data in CSV format (compatible with Excel)</li>
+                    <li>Click on any <strong>function name</strong> to copy it to clipboard</li>
+                    <li>Use <strong>Export Full Statistics</strong> from the Statistics tab for detailed analysis</li>
+                </ul>
+            </div>
+            
+            <!-- Script Console -->
+            <div class="help-section">
+                <h4><i class="fas fa-terminal"></i> Script Console</h4>
+                <p>It is possible to open, edit, run, and save scripts using the script console window. To toggle the script console, <strong>press F12</strong>. The script console also provides an output window in which script debugging output is visible.</p>
+                <p><em>Note: The Script Console is a build-time option. It has been enabled by default since version 0.10.5.</em></p>
+            </div>
+            
+            <!-- Includes Mechanism -->
+            <div class="help-section">
+                <h4><i class="fas fa-file-import"></i> Includes</h4>
+                <p>Stellarium provides a mechanism for splitting scripts into different files. Typical functions or lists of variables can be stored in separate <code>.inc</code> files and used within scripts through the <code>include()</code> command:</p>
+                <div class="example-box">
+                    <pre>include("common_objects.inc");</pre>
+                </div>
+                <p><em>Detailed examples can be found in the Constellations Tour script.</em></p>
+            </div>
+            
+            <!-- Core StelModule Classes -->
+            <div class="help-section">
+                <h4><i class="fas fa-puzzle-piece"></i> Core StelModule Classes</h4>
+                <p>The public slots for each of the following classes are available in the scripting engine via <strong>an object with the same name as the class</strong>. All of these (except StelSkyDrawer) are StelModule classes:</p>
+                
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <strong><i class="fas fa-star"></i> AsterismMgr</strong>
+                        <p>Manages asterisms (star patterns) display and configuration</p>
+                        <pre>AsterismMgr.setFlagLines(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-shapes"></i> ConstellationMgr</strong>
+                        <p>Controls constellation display, boundaries, and artistic representations</p>
+                        <pre>ConstellationMgr.setFlagLines(true);
+ConstellationMgr.setFlagBoundaries(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-map-marker-alt"></i> CustomObjectMgr</strong>
+                        <p>Manages user-defined custom sky objects/markers</p>
+                        <pre>CustomObjectMgr.addCustomObject(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-highlighter"></i> HighlightMgr</strong>
+                        <p>Controls highlighting of specific sky objects</p>
+                        <pre>HighlightMgr.highlightObject(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-border-all"></i> GridLinesMgr</strong>
+                        <p>Manages celestial grid lines (equatorial, azimuthal, etc.)</p>
+                        <pre>GridLinesMgr.setFlagEquatorGrid(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-tags"></i> LabelMgr</strong>
+                        <p>Controls text labels displayed on screen</p>
+                        <pre>LabelMgr.labelScreen("Hello", 200, 200,
+    true, 20, "#ff0000");
+LabelMgr.deleteAllLabels();</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-thumbtack"></i> MarkerMgr</strong>
+                        <p>Manages markers placed on celestial objects</p>
+                        <pre>MarkerMgr.addMarker(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-mountain"></i> LandscapeMgr</strong>
+                        <p>Controls landscape, atmosphere, and ground rendering</p>
+                        <pre>LandscapeMgr.setFlagAtmosphere(true);
+LandscapeMgr.setFlagGround(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-meteor"></i> SporadicMeteorMgr</strong>
+                        <p>Controls sporadic meteor display and frequency</p>
+                        <pre>SporadicMeteorMgr.setZHR(10);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-cloud"></i> NebulaMgr</strong>
+                        <p>Manages nebula and deep-sky object display</p>
+                        <pre>NebulaMgr.setFlagHints(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-image"></i> ScreenImageMgr</strong>
+                        <p>Controls images displayed on the screen overlay</p>
+                        <pre>ScreenImageMgr.insertImage(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-sun"></i> SolarSystem</strong>
+                        <p>Manages solar system objects (planets, moons, etc.)</p>
+                        <pre>SolarSystem.setFlagPlanets(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-star-of-life"></i> StarMgr</strong>
+                        <p>Controls star display, magnitude limits, and colors</p>
+                        <pre>StarMgr.setFlagStars(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-bolt"></i> StelActionMgr</strong>
+                        <p>Executes Stellarium actions programmatically</p>
+                        <pre>StelActionMgr.pushAction(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-volume-up"></i> StelAudioMgr</strong>
+                        <p>Controls audio playback within Stellarium</p>
+                        <pre>StelAudioMgr.playSound(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-video"></i> StelVideoMgr</strong>
+                        <p>Manages video playback and display</p>
+                        <pre>StelVideoMgr.playVideo(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-arrows-alt"></i> StelMovementMgr</strong>
+                        <p>Controls view movement, zoom, and orientation</p>
+                        <pre>StelMovementMgr.zoomTo(120, 1);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-paint-brush"></i> StelSkyDrawer</strong>
+                        <p>Manages sky rendering parameters (not a StelModule)</p>
+                        <pre>StelSkyDrawer.setMaxLuminance(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-layer-group"></i> StelSkyLayerMgr</strong>
+                        <p>Controls sky background layers and images</p>
+                        <pre>StelSkyLayerMgr.insertLayer(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-map-pin"></i> SpecialMarkersMgr</strong>
+                        <p>Manages special marker display on the sky</p>
+                        <pre>SpecialMarkersMgr.setFlagMarkers(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-water"></i> MilkyWay</strong>
+                        <p>Controls Milky Way rendering and intensity</p>
+                        <pre>MilkyWay.setIntensity(2.0);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-moon"></i> ZodiacalLight</strong>
+                        <p>Controls zodiacal light rendering</p>
+                        <pre>ZodiacalLight.setFlag(true);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-globe"></i> HipsMgr</strong>
+                        <p>Manages HiPS (Hierarchical Progressive Survey) sky surveys</p>
+                        <pre>HipsMgr.loadSurvey(...);</pre>
+                    </div>
+                    
+                    <div class="module-card">
+                        <strong><i class="fas fa-font"></i> NomenclatureMgr</strong>
+                        <p>Controls display of planetary nomenclature labels</p>
+                        <pre>NomenclatureMgr.setFlagNomenclature(true);</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Plugin Classes -->
+            <div class="help-section">
+                <h4><i class="fas fa-plug"></i> Plugin Classes</h4>
+                <p>The public slots for the following plugin classes are also available in the scripting engine:</p>
+                
+                <div class="modules-grid plugins-grid">
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-eye"></i> Oculars</strong>
+                        <p>Simulates telescope/binocular eyepiece views</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-satellite"></i> Satellites</strong>
+                        <p>Displays and tracks artificial satellites</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-dot-circle"></i> Quasars</strong>
+                        <p>Displays quasar catalog objects</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-circle"></i> Pulsars</strong>
+                        <p>Displays pulsar catalog objects</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-globe-americas"></i> Exoplanets</strong>
+                        <p>Displays known exoplanet systems</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-chart-line"></i> Observability</strong>
+                        <p>Analyzes object observability conditions</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-clock"></i> EquationOfTime</strong>
+                        <p>Displays equation of time data</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-anchor"></i> NavStars</strong>
+                        <p>Displays navigational stars catalog</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-meteor"></i> MeteorShowers</strong>
+                        <p>Displays meteor shower radiants (via MeteorShowersMgr)</p>
+                        <pre>MeteorShowers.setZHR(100);</pre>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-monument"></i> ArchaeoLines</strong>
+                        <p>Displays archaeoastronomical alignment lines</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-calendar-alt"></i> Calendars</strong>
+                        <p>Displays various calendar system overlays</p>
+                    </div>
+                    
+                    <div class="module-card plugin-card">
+                        <strong><i class="fas fa-telescope"></i> TelescopeControl</strong>
+                        <p>Controls connected telescopes</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Minimal Script Example -->
+            <div class="help-section">
+                <h4><i class="fas fa-code"></i> Minimal Script Example</h4>
+                <p>This script prints "Hello Universe" in the Script Console output window:</p>
+                <div class="example-box">
+                    <pre>core.debug("Hello Universe");</pre>
+                </div>
+            </div>
+            
+            <!-- Using a StelModule Example -->
+            <div class="help-section">
+                <h4><i class="fas fa-cogs"></i> Using a StelModule Example</h4>
+                <p>This script uses the LabelMgr module to display "Hello Universe" in white on the screen for 3 seconds, then clears all labels:</p>
+                <div class="example-box">
+                    <pre>LabelMgr.labelScreen("Hello Universe", 200, 200, true, 20, "#ff0000");
+core.wait(3);
+LabelMgr.deleteAllLabels();</pre>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="help-footer">
+                <p><i class="fas fa-copyright"></i> Stellarium Scripting API Reference | Extracted from Stellarium source files</p>
+                <p><a href="https://stellarium.org/" target="_blank"><i class="fas fa-external-link-alt"></i> stellarium.org</a> | Complete documentation for script developers</p>
+                <p style="margin-top: 10px;"><small>Generated based on Stellarium official documentation. Best source of examples: <code>scripts</code> sub-directory of the main Stellarium source tree. Script files end in <code>.ssc</code> and <code>.inc</code>.</small></p>
+            </div>
+        </div>
+    `;
+}
     
     return {
         renderFunctionCard,
